@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/db.sqlite"
 app.config["SECRET_KEY"] = "17ab226de066a0f995895791b9e726fbb14042df6583763d1df5084dfc3b53e8"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+app.config["APP_NAME"] = "pcpc"
 app.config["UPLOADS_DEFAULT_DEST"] = app.config["APP_NAME"] + '/static'
 app.config["UPLOADS_DEFAULT_URL"] = app.config["APP_NAME"] + '/static'
 app.config["UPLOADED_PROFILEPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"] + '/uploads/profile_pics'
@@ -24,9 +25,11 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 login_manager.login_message  = "برای دسترسی به این صفحه ابتدا باید وارد شوید."
 login_manager.login_message_category   = "info"
-# from pcpc.routes import *
-# from pcpc.models import *
-# if  not User.query.all():
-#     admin = User(name="ادمین", identifier="admin", user_type="admin", password=bcrypt.generate_password_hash("admin"))
-#     db.session.add_all([admin])
-#     db.session.commit()
+
+from pcpc.routes import *
+from pcpc.models import *
+
+if not User.query.all():
+    admin = User(name="ادمین", identifier="admin", user_type="admin", password=bcrypt.generate_password_hash("admin"))
+    db.session.add_all([admin])
+    db.session.commit()

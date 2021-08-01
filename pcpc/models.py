@@ -1,5 +1,5 @@
 from datetime import datetime, time
-from online_test import db, login_manager
+from pcpc import db, login_manager
 from flask_login import UserMixin
 import jdatetime
 DATE_FORMAT = "%Y/%m/%d"
@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     user_type = db.Column(db.String(30), default='member')
     password = db.Column(db.String(32), nullable=False)
     email = db.Column(db.String(32))
-    team = db.relationship('Team', backref=db.backref("members", lazy="dynamic"))
+    team = db.relationship('Team', backref=db.backref("members"))
     create_date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):

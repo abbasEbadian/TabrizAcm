@@ -12,8 +12,9 @@
     <title>{% block title%}{%endblock%}</title>
 </head>
 <body class="{{ body_class or ''}}">
-    {% include 'navbar.html' %}
-
+    {% if not hide_navbar %}
+        {% include 'navbar.html' %}
+    {% endif %}
     {% block navigator %} {% endblock %}
     {% block main %} {% endblock %}
 

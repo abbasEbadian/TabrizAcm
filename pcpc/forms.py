@@ -5,7 +5,7 @@ from flask_wtf.file import FileField
 from wtforms.fields.html5 import TelField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, length, EqualTo, ValidationError
-from online_test.models import User, Course
+from pcpc.models import User, Team
 from flask_login import current_user
 
 length_message = "حداقل {} کاراکتر"
