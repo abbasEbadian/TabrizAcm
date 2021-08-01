@@ -37,7 +37,7 @@ class RegisterForm(FlaskForm):
         
 
 class LoginForm(FlaskForm):
-    identifier = StringField('شماره دانشجویی یا همراه', validators=[DataRequired(message=empty_message), length(min=5, max=20, message=length_message.format(5))])
+    identifier = StringField('شماره دانشجویی', validators=[DataRequired(message=empty_message), length(min=5, max=20, message=length_message.format(5))])
     password = PasswordField('رمز عبور', validators=[DataRequired(message=empty_message)])
     remember = BooleanField('مرا به خاطر بسپار')
     submit = SubmitField('ورود به سایت')

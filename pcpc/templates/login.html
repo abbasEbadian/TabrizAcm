@@ -4,81 +4,78 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container-fluid login_container row">
-        <div class="col-12 col-md-6 login_form_container">
+    <div class="container-fluid row p-0" id="login_page">
+        <div class="col-12 col-md-6 login_form_container p-4">
                 <form action="" method="POST">
                         <!-- CSRF -->
                         {{ form.hidden_tag() }} 
-                        <fieldset class="form-group">
+                        <fieldset class="form-group ">
                             <legend class="mb-4 text-center">
-                                <div class="">
-                                    <img src="{{url_for('static', filename='img/logo.png')}}" alt="logo" class="logo"/>
-                                    <h3 class="logo mt-2">سامانه آزمونـــ آنلاینــــ</h3>
+                                <div class="d-flex justify-content-center align-items-end logo_container">
+                                    <img src="{{url_for('static', filename='img/pcpc.png')}}" alt="logo" class="logo_img"/>
+                                    <img src="{{url_for('static', filename='img/colored-logo.png')}}" alt="logo" class="logo_img"/>
                                 </div>
+                                <!-- <h3 class="logo mt-2">ورود</h3> -->
                             </legend>
-                            <div class="form-group  mb-4 ">
-                                {{ form.identifier.label(class="form-control-label pb-2") }}
-                                {% if form.identifier.errors %}
-                                    <div class="input-group mb-3 coned-input-group bg-none shadow-md">
-                                        <div class="input-group-prepend">
-                                            <span class="icon input-group-text  bi-person-fill h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                            <div class="inputs px-md-5">
+                                <div class="form-group  mb-5 ">
+                                    {% if form.identifier.errors %}
+                                        <div class="input-group mb-3 new_design_inputs bg-none ">
+                                            {{ form.identifier(class="form-control form-control-lg is-invalid") }}
+                                            {{ form.identifier.label(class="form-control-label pb-2") }}
+                                            <i class="bi-person-fill"></i>
                                         </div>
-                                        {{ form.identifier(class="form-control form-control-lg is-invalid") }}
+                                        
+                                        <div class="invalid-feedback">
+                                            {% for error in form.identifier.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.identifier(class="form-control form-control-lg ") }}
+                                        {{ form.identifier.label(class="form-control-label pb-2") }}
+                                        <i class="bi-person-fill"></i>
                                     </div>
+                                    {%endif%}
+                                </div>
+                                <div class="form-group my-5 ">
                                     
-                                    <div class="invalid-feedback">
-                                        {% for error in form.identifier.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {%else%}
-                                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                                    <div class="input-group-prepend">
-                                        <span class="icon input-group-text bi-person-fill  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
-                                    </div>
-                                    {{ form.identifier(class="form-control form-control-lg ") }}
-                                </div>
-                                {%endif%}
-                            </div>
-                            <div class="form-group mb-4">
-                                {{ form.password.label(class="form-control-label pb-2") }}
-                                {%if form.password.errors %}
-                                    <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                                        <div class="input-group-prepend">
-                                            <span class="icon input-group-text bi-shield-lock h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                                    {%if form.password.errors %}
+                                        <div class="input-group mb-3  bg-none new_design_inputs ">
+                                            {{ form.password(class="form-control form-control-lg  is-invalid") }}
+                                            {{ form.password.label(class="form-control-label pb-2") }}
+                                            <i class="bi-shield-lock-fill"></i>
                                         </div>
-                                        {{ form.password(class="form-control form-control-lg  is-invalid") }}
-        
+                                        <div class="invalid-feedback ">
+                                            {% for error in form.password.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.password(class="form-control form-control-lg ") }}
+                                        {{ form.password.label(class="form-control-label pb-2") }}
+                                        <i class="bi-shield-lock-fill"></i>
+
                                     </div>
-                                    <div class="invalid-feedback ">
-                                        {% for error in form.password.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {%else%}
-                                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                                    <div class="input-group-prepend">
-                                        <span class="icon input-group-text bi-shield-lock  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
-                                    </div>
-                                    {{ form.password(class="form-control form-control-lg ") }}
+                                    {%endif%}
                                 </div>
-                                {%endif%}
-                            </div>
-                            {{ form.submit(class="btn btn-main btn-lg w-100") }}
-                            <div class="form-group mt-4">
-                               
-                            </div>
-                          
-                            <div class="form-group  mb-2 d-flex   justify-content-between align-items-center flex-wrap">
-                                <div class="col-12 col-sm-6  text-sm-end order-sm-2 mb-3">
-                                    {{ form.remember() }}
-                                    {{ form.remember.label(class="form-control-label") }}
-                                </div>     
-                                <small class="text-muted col-12 col-sm-6  order-sm-1 mb-3">
-                                    حساب جدید نیاز دارید؟
-                                    <a class="mr-2" href="{{ url_for('register') }}">بسازید !</a>
-                                </small>
-                                                   
+                                {{ form.submit(class="btn btn-main btn-lg w-100 mt-4") }}
+                                <div class="form-group mt-4">
+                                </div>
+                            
+                                <div class="form-group  mb-2 d-flex   justify-content-between align-items-center flex-wrap">
+                                    <div class="col-12 col-sm-6  text-sm-end order-sm-2 mb-3">
+                                        {{ form.remember() }}
+                                        {{ form.remember.label(class="form-control-label") }}
+                                    </div>     
+                                    <small class="text-muted col-12 col-sm-6  order-sm-1 mb-3">
+                                        حساب جدید نیاز دارید؟
+                                        <a class="mr-2" href="{{ url_for('register') }}">بسازید !</a>
+                                    </small>
+                                                    
+                                </div>
                             </div>
                         </fieldset>
                         {% with messages = get_flashed_messages(with_categories=True)%}
@@ -90,6 +87,13 @@
                         {% endwith %}
                     </form>
         </div>
-        <div class="col-12 col-md-6 info"></div>
+        <div class="col-12 col-md-6 info px-0 d-flex text-white">
+            <div class="pnu_logo h-100 "></div>
+            <div class="content p-2  d-flex justify-content-center align-items-start flex-column">
+                <h3>PCPC</h3>
+                <h6>پنجمین دوره مسابقات برنامه نویسی دانشجویی</h6>
+                <h6>دانشگاه های پیام نور کشور - تبریز</h6>
+            </div>
+        </div>
     </div>
 {% endblock%}
