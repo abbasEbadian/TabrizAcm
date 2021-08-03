@@ -3,7 +3,7 @@ from pcpc import app
 from flask import render_template, request, flash, redirect, url_for, jsonify
 import json, os
 from pcpc.models import User, Team
-from pcpc.forms import RegisterForm, LoginForm
+from pcpc.forms import RegisterForm, LoginForm, ProfileForm
 from sqlalchemy import desc, or_
 from pcpc import db, app, bcrypt, profile_pics, question_pics
 from flask_login import login_user, current_user, logout_user, login_required
@@ -12,7 +12,11 @@ from datetime import date as ddate
 
 @app.route("/")
 def home():
-    return render_template("main.html", title="PCPC - Tabriz")
+    data = {
+        "title":"PCPC - Tabriz",
+        "navbar_theme": "white_theme"
+    }
+    return render_template("home.html", **data)
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
@@ -36,7 +40,7 @@ def login():
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('profile'))
 
     form = RegisterForm()
     if form.validate_on_submit():
@@ -59,3 +63,28 @@ def register():
         "title": "PCPC - Register"
     }
     return render_template('register.html', **data)
+
+@app.route('/profile', methods=["POST", "GET"])
+@login_required
+def profile():
+    form = ProfileForm() 
+    if form.validate_on_submit():
+        current_user.name = form.name.data
+        current_user.email = form.email.data
+        current_user.phone = form.phone.data
+        flash('با موفقیت ذخیره شد', "info")
+        image = request.files['image']
+        if image.filename and image.filename != current_user.image.split("/")[-1]:
+            for ext in ['.png', '.jpg', '.jpeg']:
+                p = os.getcwd() + current_user.image + ext
+                if os.path.isfile(p):
+                    os.remove(p)
+            profile_pics.save(image)
+            current_user.image = f"uploads/profile_pics/{image.filename}"
+        db.session.commit()
+    data = {
+        "form": form,
+        "title": "PCPC - Profile",
+        "navbar_theme": "white_theme"
+    }
+    return render_template('profile.html', **data)

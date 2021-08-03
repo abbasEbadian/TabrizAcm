@@ -35,10 +35,7 @@ class RegisterForm(FlaskForm):
         if user:
             raise ValidationError("این ایمیل قبلا ثبت شده است.")
 
-    # def validate_phone(self, phone):
-    #     user = User.query.filter_by(phone=phone.data).first()
-    #     if user:
-    #         raise ValidationError("این شماره همراه قبلا ثبت شده است.")
+
         
     def validate_confirm_password(self, confirm_password):
         if self.password.data != self.confirm_password.data:
@@ -49,3 +46,21 @@ class LoginForm(FlaskForm):
     password = PasswordField('رمز عبور', validators=[DataRequired(message=empty_message)],render_kw={"placeholder":""}  )
     remember = BooleanField('مرا به خاطر بسپار')
     submit = SubmitField('ورود به سایت')
+
+class ProfileForm(FlaskForm):
+    name = StringField('نام و نام خانوادگی', validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off"})
+    email = EmailField('ایمیل',
+    validators=[], render_kw={"autocomplete": "off"})
+    identifier = StringField('شماره دانشجویی',render_kw={ "disabled":"disabled", "autocomplete": "off"})
+    phone = TelField("شماره همراه",render_kw={  "autocomplete": "off"})
+    submit = SubmitField('بروزرسانی')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user and user != current_user:
+            raise ValidationError("این ایمیل قبلا ثبت شده است.")
+        
+    def validate_phone(self, phone):
+        user = User.query.filter_by(phone=phone.data).first()
+        if user and user!=current_user:
+            raise ValidationError("این شماره همراه قبلا ثبت شده است.")

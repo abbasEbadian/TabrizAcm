@@ -2,6 +2,7 @@ from datetime import datetime, time
 from pcpc import db, login_manager
 from flask_login import UserMixin
 import jdatetime
+from flask import url_for
 DATE_FORMAT = "%Y/%m/%d"
 TIME_FORMAT = "%H:%M"
 DATETIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT
@@ -19,7 +20,9 @@ class User(db.Model, UserMixin):
     user_type = db.Column(db.String(30), default='member')
     password = db.Column(db.String(32), nullable=False)
     email = db.Column(db.String(32))
+    phone = db.Column(db.String(32))
     team = db.relationship('Team', backref=db.backref("members"))
+    image = db.Column(db.String(100), default='img/default_user.png')
     create_date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):

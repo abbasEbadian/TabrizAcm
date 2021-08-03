@@ -119,11 +119,14 @@ td, th{
     text-align: center;
 }
 
-#login_page .logo_img{
+#logo_container .logo_img{
     height: 100px;
 }
-#login_page .logo_img:first-of-type{
-    transform: translateY(12px) translateX(-40px);
+#login_page #logo_container .logo_img:first-of-type{
+    transform: translateX(-40px);
+}
+#logo_container .logo_img:first-of-type{
+    transform: translateY(12px) translateX(-20px);
 }
 #login_page .info{
     background-color: #012D52;
@@ -138,6 +141,125 @@ td, th{
     width: 100%;
 }
 
+
+
+/* ************** */
+/*  Profile Style */
+/* ************** */
+#profile_page form{
+    background: #011a28dd;
+    border-radius: 16px;
+    height: max-content;
+    box-shadow: 0 0 12px -2px #000;
+}
+#profile_page header{
+    height: 100vh;
+    background-size: cover;
+    padding-top: 15%; 
+    padding-right: 128px;
+}
+#profile_page #avatar_div .help_text{
+    bottom: 0;
+    background: #2228;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 4px 0 8px 0;
+    cursor: pointer;
+}
+#profile_page #avatar_div{
+    position: relative;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 16px;;
+    display: flex;
+    justify-content: center;align-items: flex-end;
+    border-radius: 50%;
+
+}
+#profile_page form label{
+    color: white;
+}
+
+#profile_page input#submit{
+    width: 140px;
+}
+#profile_page label{
+    font-size: 13px;
+}
+/* ************** */
+/*  Navbar Style  */
+/* ************** */
+
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+nav.white_theme #log_status *,
+nav.white_theme a{
+    color: white !important;
+    font-weight: bolder;
+}
+#logo_container{
+    transform: translateY(-8px);
+}
+
+/* ****************** */
+/*  Home Page Style   */
+/* ****************** */
+    #home_page header * {
+        z-index: 1;
+    }
+    #home_page header{
+        height: 100vh;
+        background-size: cover;
+        padding-top: 17.5%; 
+    }
+    #home_page .overlay{
+        background-color: var(--main);
+        opacity: 0.7;
+        z-index: 0;
+    }
+
+    #home_page header .logo img{
+        height: 200px;
+        width: 200px;
+    }
+    #home_page header .lines{
+        height:70%;
+        pointer-events: none;
+    }
+    #home_page header .lines .left_line{
+        border: 1px solid #fff;
+        border-width: 2px 0 0 2px;
+        width:40%;
+    }
+    #home_page header .lines .right_line{
+        border: 1px solid #fff;
+        border-width: 0 2px 2px 0;
+        width:40%;
+        height: 90%;
+    }
+    #home_page header .aligned_content h6{
+        margin-right:auto;
+        width: max-content; 
+        border-top: 1px solid #456c8c;
+        margin-top: 4px;
+        padding-top: 8px;
+    }
+    #home_page header .aligned_content button{
+        background-color: #456C8C;
+        width: 215px;
+        margin: 10px 0;
+    }
+    
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;
@@ -155,6 +277,10 @@ td, th{
     }
     div#login_page .info .content > h5{
         font-size: 14px;
+    }
+
+    #profile_page header{
+        padding: 16px;
     }
 
 }

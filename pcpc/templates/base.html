@@ -16,7 +16,7 @@
 </head>
 <body class="{{ body_class or ''}}">
     {% if not hide_navbar %}
-        {% include 'navbar.html' %}
+        {% include 'snippets/navbar.html' %}
     {% endif %}
     {% block navigator %} {% endblock %}
     {% block main %} {% endblock %}

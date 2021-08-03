@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="home_page">
+    <header class="position-relative d-grid align-items-bottom" style="background-image: url({{ url_for('static', filename='img/home-page-bg.png')}});">
+        <div class="overlay w-50 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
+        <div class="content">
+            <div class="logo d-flex flex-column justify-centent-center align-items-center">
+                <img src="{{ url_for('static', filename='img/pnu-logo.png') }}" alt="pnu-logo"  />
+                <h1 class="text-white">PCPC</h1>
+                <div class="aligned_content d-flex flex-column">
+                    <h2 class="fw-bolder text-white">پنجمین دوره مسابقات برنامه نویسی کشوری </h2>
+                    <h6 class="text-white text-end">به میزبانی دانشگاه پیام نور تبریز</h6>
+                    <button class="btn text-white ms-auto py-2">ثبت نام در رویداد</button>
+                    <button class="btn text-white ms-auto py-2">آئین نامه اجرایی مسابقات</button>
+                </div>
+            </div>
+        </div>
+        <div class="lines position-absolute w-100 bottom-0 d-flex justify-centent-between px-4">
+            <div class="right_line  me-auto" ></div>
+            <div class="left_line h-100" ></div>
+        </div>
+    </header>
+</div>
+{% endblock main %}
