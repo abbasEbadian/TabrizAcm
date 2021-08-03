@@ -170,12 +170,11 @@ td, th{
 #profile_page #avatar_div{
     position: relative;
     overflow: hidden;
-    width: 128px;
-    height: 128px;
+    width: 108px;
+    height: 108px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0 auto;
     margin-bottom: 16px;;
     display: flex;
     justify-content: center;align-items: flex-end;

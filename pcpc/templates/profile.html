@@ -11,16 +11,22 @@
         {% set p = form.phone.process_data(current_user.phone) %}
         <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-6 col-lg-5 p-4 px-md-5 ms-md-5">
             {{ form.hidden_tag() }}
-            <div id="avatar_div" style="background-image: url({{ 'static/'+current_user.image }});" >
-                <small class='help_text'>تغییر</small>
+            <div class="d-flex justify-content-between">
+                <div id="avatar_div" style="background-image: url({{ 'static/'+current_user.image }});" >
+                    <small class='help_text'>تغییر</small>
+                </div>
+                <input type="file" name="image" id="avatar_input" class="d-none" accept=".png, .jpg, .jpeg">
+                <div class="team_info d-flex flex-column justify-content-center align-items-left flex-grow-1 ms-4">
+                    <h4 class="team_name border-bottom pb-2 mb-2 text-white text-end"> Tabriz.py </h4>
+                    <h5 class="team_city text-white text-end"> From Tabriz </h5>
+                </div>
             </div>
-            <input type="file" name="image" id="avatar_input" class="d-none" accept=".png, .jpg, .jpeg">
             <div class="form-group mb-4">
                 {{ form.name.label(class="form-control-label pb-2") }}
                 {%if form.name.errors %}
                     <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
                         <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-person h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                            <span class="icon input-group-text bi-person-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                         </div>
                         {{ form.name(class="form-control   ") }}
 
@@ -33,7 +39,7 @@
                 {%else%}
                 <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
                     <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-person  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                        <span class="icon input-group-text bi-person-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                     </div>
                     {{ form.name(class="form-control  ") }}
                 </div>
@@ -46,7 +52,7 @@
                 {%if form.email.errors %}
                     <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
                         <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-envelope h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                            <span class="icon input-group-text bi-envelope-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                         </div>
                         {{ form.email(class="form-control  ") }}
 
@@ -59,7 +65,7 @@
                 {%else%}
                 <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
                     <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-envelope  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                        <span class="icon input-group-text bi-envelope-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                     </div>
                     {{ form.email(class="form-control  ") }}
                 </div>
@@ -72,7 +78,7 @@
                 {%if form.phone.errors %}
                     <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
                         <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-phone h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                            <span class="icon input-group-text bi-phone-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                         </div>
                         {{ form.phone(class="form-control  ") }}
 
@@ -85,7 +91,7 @@
                 {%else%}
                 <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
                     <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-phone  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                        <span class="icon input-group-text bi-phone-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                     </div>
                     {{ form.phone(class="form-control  ") }}
                 </div>
@@ -98,7 +104,7 @@
                 {% if form.identifier.errors %}
                     <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
                         <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-person-badge h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                            <span class="icon input-group-text bi-person-badge-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                         </div>
                         {{ form.identifier(class="form-control   is-invalid") }}
 
@@ -111,13 +117,20 @@
                 {%else%}
                 <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
                     <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-person-badge  h-100 fs-4 text-black-50 bg-white" id="basic-addon1"></span>
+                        <span class="icon input-group-text bi-person-badge-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
                     </div>
                     {{ form.identifier(class="form-control  disabled") }}
                 </div>
                 {%endif%}
             </div>
-            {{ form.submit(class="btn btn-simple btn-lg fs-6 border-white text-white border float-end")}}
+            <div class="form-group  d-flex justify-content-center align-items-center">
+                {% with messages = get_flashed_messages() %}
+                    {% for m in messages%}
+                        <span class="text-white">{{ m }}</span>
+                    {% endfor %}
+                {% endwith %}
+                {{ form.submit(class="btn btn-simple btn-lg fs-6 border-white text-white border ms-auto")}}
+            </div>
         </form>
     </header>
 </div>
