@@ -12,12 +12,12 @@ from datetime import date as ddate
 
 @app.route("/")
 def home():
-    return render_template("main.html")
+    return render_template("main.html", title="PCPC - Tabriz")
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for(current_user.user_type))
+        return redirect(url_for('home'))
 
     form = LoginForm()
     user = User.query.filter(User.identifier==form.identifier.data).first()
@@ -28,9 +28,34 @@ def login():
         else:
             flash("شماره دانشجویی یا رمز عبور اشتباه است", 'danger')
     data = {
-        "hide_navbar": True
+        "hide_navbar": True,
+        "form": form,
+        "title": "PCPC - Login"
     }
-    return render_template('login.html', form=form, **data)
-@app.route("/register")
+    return render_template('login.html', **data)
+@app.route("/register", methods=["POST", "GET"])
 def register():
-    return render_template("main.html")
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    form = RegisterForm()
+    if form.validate_on_submit():
+        hash_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        new_user = {
+            "name": form.name.data,
+            "identifier": form.identifier.data,
+            "password": hash_pwd,
+            "email": form.email.data,
+        }
+        user = User(**new_user)
+        db.session.add(user)
+        db.session.commit()
+        flash("حساب کاربری با موفقیت ایجاد شد.", 'success')
+        return redirect(url_for('login'))
+
+    data = {
+        "hide_navbar": True,
+        "form": form,
+        "title": "PCPC - Register"
+    }
+    return render_template('register.html', **data)

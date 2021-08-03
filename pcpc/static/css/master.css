@@ -80,14 +80,16 @@ td, th{
     bottom: 8px;
     z-index: 4;
     transition: 0.2s;
-}
-.new_design_inputs input:focus  + label{
+    opacity: 0.5;
     color: var(--main);
+}
+.new_design_inputs input:focus  + label,
+.new_design_inputs input:not(:placeholder-shown) + label{
     font-size: 14px;
     bottom: 75%;
     right: 4px;
     transition: 0.2s;
-    opacity: 0.8;
+    opacity: 1;
 }
 .new_design_inputs i {
     position: absolute;
@@ -104,13 +106,13 @@ td, th{
 #login_page {
     height: 100%;
 }
-#login_page .login_form_container {
+#login_page #login_form_container {
     display: grid;
     align-items: center;
     position: relative;
 
 }
-#login_page .login_form_container .logo_container{
+#login_page #logo_container{
     position: absolute;
     top: 60px;
     width: 100%;
@@ -137,10 +139,10 @@ td, th{
 }
 
 @media (max-width: 768px){
-    div#login_page .login_form_container{
+    div#login_page #login_form_container{
         display: flex;
     }
-    div#login_page .login_form_container .logo_container{
+    div#login_page  #logo_container{
         position: unset;
         padding-top: 16px;
     }

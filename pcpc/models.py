@@ -28,7 +28,9 @@ class User(db.Model, UserMixin):
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(10), unique=True)
     name = db.Column(db.String(50))
+    english_name = db.Column(db.String(50))
     city = db.Column(db.String(50))
     team_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     create_date = db.Column(db.DateTime, default=datetime.utcnow)

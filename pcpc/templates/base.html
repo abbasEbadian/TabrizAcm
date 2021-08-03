@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/master.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bsicons.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css')}}">
-    <title>{% block title%}{%endblock%}</title>
+    <title>{{ title }}</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="{{ url_for('static', filename='img/pcpc-fav.png', _external=True)}}"/>
 </head>
 <body class="{{ body_class or ''}}">
     {% if not hide_navbar %}

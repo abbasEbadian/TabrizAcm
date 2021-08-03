@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container-fluid row p-0" id="login_page">
+        <div class="col-12 col-md-6 login_form_container p-4">
+                <form action="" method="POST" class="w-100">
+                        <!-- CSRF -->
+                        {{ form.hidden_tag() }} 
+                        <fieldset class="form-group ">
+                            <legend class="mb-4 text-center">
+                                {% include 'snippets/double-logo.html' %}
+                            </legend>
+                            <div class="inputs px-md-5">
+                                <div class="form-group  mb-5 ">
+                                    {% if form.name.errors %}
+                                        <div class="input-group mb-3 new_design_inputs bg-none is-invalid ">
+                                            {{ form.name(class="form-control form-control-lg pe-5") }}
+                                            {{ form.name.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-person-fill text-danger"></i>
+                                        </div>
+                                        
+                                        <div class="invalid-feedback">
+                                            {% for error in form.name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.name(class="form-control form-control-lg pe-5") }}
+                                        {{ form.name.label(class="form-control-label pb-2") }}
+                                        <i class="bi-person-fill"></i>
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <div class="form-group  mb-5 ">
+                                    {% if form.identifier.errors %}
+                                        <div class="input-group mb-3 new_design_inputs bg-none is-invalid ">
+                                            {{ form.identifier(class="form-control form-control-lg pe-5") }}
+                                            {{ form.identifier.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-person-badge-fill text-danger"></i>
+                                        </div>
+                                        
+                                        <div class="invalid-feedback">
+                                            {% for error in form.identifier.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.identifier(class="form-control form-control-lg pe-5") }}
+                                        {{ form.identifier.label(class="form-control-label pb-2") }}
+                                        <i class="bi-person-badge-fill"></i>
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <div class="form-group  mb-5 ">
+                                    {% if form.email.errors %}
+                                        <div class="input-group mb-3 new_design_inputs bg-none is-invalid ">
+                                            {{ form.email(class="form-control form-control-lg  pe-5") }}
+                                            {{ form.email.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-envelope-fill text-danger"></i>
+                                        </div>
+                                        
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.email(class="form-control form-control-lg pe-5") }}
+                                        {{ form.email.label(class="form-control-label pb-2") }}
+                                        <i class="bi-envelope-fill"></i>
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <div class="form-group my-5 ">
+                                    {%if form.password.errors %}
+                                        <div class="input-group mb-3  bg-none new_design_inputs is-invalid ">
+                                            {{ form.password(class="form-control form-control-lg pe-5") }}
+                                            {{ form.password.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-shield-lock-fill text-danger"></i>
+                                        </div>
+                                        <div class="invalid-feedback ">
+                                            {% for error in form.password.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.password(class="form-control form-control-lg pe-5") }}
+                                        {{ form.password.label(class="form-control-label pb-2") }}
+                                        <i class="bi-shield-lock-fill"></i>
+                                        
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <div class="form-group my-5 ">
+                                    {%if form.confirm_password.errors %}
+                                        <div class="input-group mb-3  bg-none new_design_inputs is-invalid ">
+                                            {{ form.confirm_password(class="form-control form-control-lg   pe-5") }}
+                                            {{ form.confirm_password.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-shield-fill-check text-danger"></i>
+                                        </div>
+                                        <div class="invalid-feedback ">
+                                            {% for error in form.confirm_password.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {%else%}
+                                    <div class="input-group mb-3  bg-none new_design_inputs">
+                                        {{ form.confirm_password(class="form-control form-control-lg pe-5") }}
+                                        {{ form.confirm_password.label(class="form-control-label pb-2") }}
+                                        <i class="bi-shield-fill-check"></i>
+                                        
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <div class="input-group mb-3  bg-none new_design_inputs">
+                                    {{ form.submit(class="btn btn-main btn-lg w-50 rounded ") }}
+                                    <a class="btn btn-simple btn-lg fs-6 mr-2 text-main fw-bolder text-center w-50" href="{{ url_for('login') }}"> 
+                                        <small>  حساب  کاربری دارید؟ وارد شوید! </small>
+                                    </a>
+                                   
+                                </div>
+
+                              
+                               
+                            </div>
+                        </fieldset>
+                        {% with messages = get_flashed_messages(with_categories=True)%}
+                            {% for category, msg in messages %}
+                                <div class="alert alert-{{category}}" role="alert">
+                                    {{ msg }}
+                                </div>
+                            {% endfor %}
+                        {% endwith %}
+                    </form>
+        </div>
+        <div class="col-12 col-md-6 info px-0 d-flex text-white">
+            <div class="pnu_logo h-100 "></div>
+            <div class="content p-2  d-flex justify-content-center align-items-start flex-column">
+                <h1>PCPC</h1>
+                <h5>پنجمین دوره مسابقات برنامه نویسی دانشجویی</h5>
+                <h5>دانشگاه های پیام نور کشور - تبریز</h5>
+            </div>
+        </div>
+    </div>
+{% endblock%}

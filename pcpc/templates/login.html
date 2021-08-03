@@ -1,8 +1,4 @@
 {% extends 'base.html' %}
-{% block title %} 
-    ورود
-{% endblock %}
-
 {% block main %}
     <div class="container-fluid row p-0" id="login_page">
         <div class="col-12 col-md-6 login_form_container p-4">
@@ -11,18 +7,15 @@
                         {{ form.hidden_tag() }} 
                         <fieldset class="form-group ">
                             <legend class="mb-4 text-center">
-                                <div class="d-flex justify-content-center align-items-end logo_container ">
-                                    <img src="{{url_for('static', filename='img/pcpc.png')}}" alt="logo" class="logo_img"/>
-                                    <img src="{{url_for('static', filename='img/colored-logo.png')}}" alt="logo" class="logo_img"/>
-                                </div>
+                                    {% include 'snippets/double-logo.html' %}
                             </legend>
                             <div class="inputs px-md-5">
                                 <div class="form-group  mb-5 ">
                                     {% if form.identifier.errors %}
-                                        <div class="input-group mb-3 new_design_inputs bg-none ">
-                                            {{ form.identifier(class="form-control form-control-lg is-invalid") }}
-                                            {{ form.identifier.label(class="form-control-label pb-2") }}
-                                            <i class="bi-person-fill"></i>
+                                        <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                                            {{ form.identifier(class="form-control form-control-lg pe-5") }}
+                                            {{ form.identifier.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-person-fill text-danger"></i>
                                         </div>
                                         
                                         <div class="invalid-feedback">
@@ -32,7 +25,7 @@
                                         </div>
                                     {%else%}
                                     <div class="input-group mb-3  bg-none new_design_inputs">
-                                        {{ form.identifier(class="form-control form-control-lg ") }}
+                                        {{ form.identifier(class="form-control form-control-lg pe-5") }}
                                         {{ form.identifier.label(class="form-control-label pb-2") }}
                                         <i class="bi-person-fill"></i>
                                     </div>
@@ -41,10 +34,10 @@
                                 <div class="form-group my-5 ">
                                     
                                     {%if form.password.errors %}
-                                        <div class="input-group mb-3  bg-none new_design_inputs ">
-                                            {{ form.password(class="form-control form-control-lg  is-invalid") }}
-                                            {{ form.password.label(class="form-control-label pb-2") }}
-                                            <i class="bi-shield-lock-fill"></i>
+                                        <div class="input-group mb-3  bg-none new_design_inputs is-invalid">
+                                            {{ form.password(class="form-control form-control-lg   pe-5") }}
+                                            {{ form.password.label(class="form-control-label pb-2 ") }}
+                                            <i class="bi-shield-lock-fill text-danger"></i>
                                         </div>
                                         <div class="invalid-feedback ">
                                             {% for error in form.password.errors %}
@@ -53,7 +46,7 @@
                                         </div>
                                     {%else%}
                                     <div class="input-group mb-3  bg-none new_design_inputs">
-                                        {{ form.password(class="form-control form-control-lg ") }}
+                                        {{ form.password(class="form-control form-control-lg pe-5") }}
                                         {{ form.password.label(class="form-control-label pb-2") }}
                                         <i class="bi-shield-lock-fill"></i>
                                         
