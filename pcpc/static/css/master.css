@@ -1,3 +1,6 @@
+:root{
+    --main: #012D52;
+}
 @font-face {
     font-family: IRANYekan;
     font-style: normal;
@@ -5,6 +8,7 @@
     src: url('../fonts/iranyekanweblight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
          url('../fonts/iranyekanweblight.ttf') format('truetype');
 }
+
 *{
     font-family: IRANYekan;
 }
@@ -68,7 +72,7 @@ td, th{
 .new_design_inputs input:focus{
     outline: none !important;
     box-shadow: none !important;
-    border-bottom-color: #012D52; 
+    border-bottom-color:  var(--main); 
 }
 .new_design_inputs label{
     position: absolute;
@@ -78,19 +82,19 @@ td, th{
     transition: 0.2s;
 }
 .new_design_inputs input:focus  + label{
+    color: var(--main);
     font-size: 14px;
     bottom: 75%;
     right: 4px;
     transition: 0.2s;
     opacity: 0.8;
-    color: crimson;
 }
 .new_design_inputs i {
     position: absolute;
     left: 8px;
     bottom: 8px;
-    opacity: 0.5;
-    color: #222;
+    opacity: 0.8;
+    color: var(--main);
     z-index: 4;
     font-size: 26px;
 }
@@ -101,7 +105,6 @@ td, th{
     height: 100%;
 }
 #login_page .login_form_container {
-    border-left: 2px solid #012D52;
     display: grid;
     align-items: center;
     position: relative;
@@ -118,7 +121,7 @@ td, th{
     height: 100px;
 }
 #login_page .logo_img:first-of-type{
-    transform: translateY(12px);
+    transform: translateY(12px) translateX(-40px);
 }
 #login_page .info{
     background-color: #012D52;
@@ -127,8 +130,29 @@ td, th{
     width: 40%;
 	background-image: url("../img/pnu-logo.png");
 	background-repeat: no-repeat;
-	background-position:75px  center;
+	background-position:8px  center;
 }
 #login_page .info .content{
-    width: 60%;
+    width: 100%;
+}
+
+@media (max-width: 768px){
+    div#login_page .login_form_container{
+        display: flex;
+    }
+    div#login_page .login_form_container .logo_container{
+        position: unset;
+        padding-top: 16px;
+    }
+    #login_page .info .pnu_logo{
+        background-size: cover;
+        background-position:20px  center;
+    }
+    #login_page .info .content{
+        width: 100%;
+    }
+    div#login_page .info .content > h5{
+        font-size: 14px;
+    }
+
 }
