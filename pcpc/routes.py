@@ -2,8 +2,8 @@ from wtforms.form import FormMeta
 from pcpc import app
 from flask import render_template, request, flash, redirect, url_for, jsonify
 import json, os
-from pcpc.models import User, Team
-from pcpc.forms import RegisterForm, LoginForm, ProfileForm
+from pcpc.models import User, Team, ContactUs
+from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm
 from sqlalchemy import desc, or_
 from pcpc import db, app, bcrypt, profile_pics, question_pics
 from flask_login import login_user, current_user, logout_user, login_required
@@ -14,7 +14,8 @@ from datetime import date as ddate
 def home():
     data = {
         "title":"PCPC - Tabriz",
-        "navbar_theme": "white_theme"
+        "navbar_logo_color": "white",
+        "navbar_text_color": "white",
     }
     return render_template("home.html", **data)
 
@@ -37,6 +38,7 @@ def login():
         "title": "PCPC - Login"
     }
     return render_template('login.html', **data)
+
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if current_user.is_authenticated:
@@ -85,6 +87,31 @@ def profile():
     data = {
         "form": form,
         "title": "PCPC - Profile",
-        "navbar_theme": "white_theme"
+        "navbar_theme": "white_theme",
+        "navbar_logo_color": "white",
+        "navbar_text_color": "white",
     }
     return render_template('profile.html', **data)
+
+@app.route('/contact-us', methods=["POST", "GET"])
+@login_required
+def contact_us():
+    form = ContactForm() 
+    if form.validate_on_submit():
+        a = dict(
+            name = form.name.data,
+            email = form.email.data,
+            text = form.text.data,
+        )
+        
+        db.session.add(ContactUs(**a))
+        db.session.commit()
+        flash('با موفقیت ارسال شد', "info")
+    data = {
+        "form": form,
+        "title": "PCPC - Contect us",
+        "navbar_theme": "white_theme",
+        "navbar_logo_color": "colored",
+        "navbar_text_color": "white",
+    }
+    return render_template('contact-us.html', **data)

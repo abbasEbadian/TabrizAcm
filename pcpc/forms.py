@@ -64,3 +64,10 @@ class ProfileForm(FlaskForm):
         user = User.query.filter_by(phone=phone.data).first()
         if user and user!=current_user:
             raise ValidationError("این شماره همراه قبلا ثبت شده است.")
+
+class ContactForm(FlaskForm):
+    name = StringField('نام', validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off", "placeholder": "نام"})
+    email = EmailField('ایمیل',
+    validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off", "placeholder": "example@gmail.com"})
+    text = TextAreaField(u'متن', [DataRequired(message=empty_message), length(max=200)], render_kw={"placeholder": "متن پیام"})
+    submit = SubmitField('ارسال')

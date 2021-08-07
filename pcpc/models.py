@@ -35,8 +35,16 @@ class Team(db.Model):
     name = db.Column(db.String(50))
     english_name = db.Column(db.String(50))
     city = db.Column(db.String(50))
+    english_city = db.Column(db.String(50))
     team_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
-    create_date = db.Column(db.DateTime, default=datetime.utcnow)
+    id = db.Column(db.Integer, primary_key=True)
 
     def __repr__(self):
         return str(self.id) + ":" + self.name + " From " + self.city
+
+class ContactUs(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    email = db.Column(db.String(50))
+    text = db.Column(db.String(200))
+    create_date = db.Column(db.DateTime, default=datetime.utcnow)

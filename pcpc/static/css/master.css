@@ -15,6 +15,18 @@
 a{
     text-decoration: none;
 }
+.top-25{
+    top: 25% !important;
+}
+.top-20{
+    top: 20% !important;
+}
+.top-15{
+    top: 15% !important;
+}
+.h-65{
+    height: 65% !important;
+}
 body, html{
     height: 100%;
 }
@@ -141,8 +153,54 @@ td, th{
     width: 100%;
 }
 
-
-
+/* ************** */
+/*  Contact Style */
+/* ************** */
+#contact_page textarea {
+	background: #012D52;
+	color: white;
+    border-color: #236AA6;
+    min-height: 200px;
+}
+#contact_page header{
+    height: 100vh;
+    background-size: cover;
+    background-position: bottom;
+    padding-top: 15%; 
+}
+#contact_page form{
+    height: max-content;
+}
+#contact_page input#submit{
+    width: 140px;
+}
+#contact_page .iconed-input-group{
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+#contact_page .form-group input{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    color: white;
+}
+#contact_page .form-group input::placeholder{
+    color: #fff8;
+}
+#contact_page .form-group textarea::placeholder{
+    color: #fff9;
+}
+#contact_page .form-group input:focus{
+    box-shadow: none;
+    color:white;
+}
+#contact_page  * {
+    z-index: 1;
+}
+#contact_page .overlay-2{
+    width: 110%;
+    transform: translateX(50%);
+}
 /* ************** */
 /*  Profile Style */
 /* ************** */
@@ -200,6 +258,10 @@ nav{
     top: 0;
     width: 100%;
     z-index: 999;
+    transition: 0.2s all;
+    -moz-transition: 0.2s all;
+    -webkit-transition: 0.2s all;
+    padding-top: 50px;
 }
 nav.white_theme #log_status *,
 nav.white_theme a{

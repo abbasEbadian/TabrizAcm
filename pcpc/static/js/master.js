@@ -31,16 +31,23 @@ $(function(ready){
         }
         changeBackground(this);
     });
-   
-
+    
+    $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        var max_pad = 50;
+        $('nav.nav').css({
+            "background-color": function() {
+                var elementHeight = $(this).height();
+                var opacity = ((1 - (elementHeight - scrollTop) / elementHeight) ) ;
+                return `rgba(5,5,5,${opacity})`;
+            },
+            "padding-top": function () {
+                return `${Math.max(max_pad - scrollTop, 5)}px`;
+            },
+            "transition": "0.22s all",
+        });
+    }).scroll();
   
-  
-    
-   
-   
-    
-    
-    
     
 });
 function changeBackground(img){
@@ -65,3 +72,4 @@ function toggle_sidebar(e) {
     $(".sidebar").toggleClass("open");
     $(e.target).toggleClass("bi-x")
 }
+

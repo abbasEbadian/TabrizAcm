@@ -1,9 +1,9 @@
-<div id="log_status" class="{{ navbar_theme == 'white' and 'text-white'}} d-flex align-items-center">
+<div id="log_status" class="{{ navbar_text_color == 'white' and 'text-white'}} d-flex align-items-center">
     {% if current_user.is_authenticated %}
-    <img class="me-2 rounded-circle" src="{{ 'static/'+current_user.image }}" alt="user_avatar" width="32px" height="32px">
-    <a href="/profile">پروفایل</a>
-    <i class="border-left bg-white d-inline-block mx-2" style="width: 1px;height:10px;"></i>
-    <a href="/logout">خروج</a>
+        <img class="me-2 rounded-circle" src="{{ 'static/'+current_user.image }}" alt="user_avatar" width="32px" height="32px">
+        <a class='px-2' href="/profile">پروفایل</a>
+        <i class="border-left bg-white d-inline-block mx-2" style="width: 1px;height:10px;"></i>
+        <a href="/logout">خروج</a>
     {% else %}
         <i class="bi-person-fill  fs-3 me-2"></i>
         <a href="/login">ورود</a>
