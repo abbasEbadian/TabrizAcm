@@ -48,7 +48,34 @@ $(function(ready){
         });
     }).scroll();
   
+    var secondarySlider = new Splide( '#secondary-slider', {
+		fixedWidth : 150,
+		height     : 90,
+		gap        : 15,
+		rewind     : true,
+		cover      : true,
+        pagination : false,
+        // focus      : 'center',
+		isNavigation: true,
+        breakpoints : {
+            '600': {
+                // fixedWidth: ,
+                // height    : 40,
+            }
+        }
+    } ).mount();
+    var primarySlider = new Splide( '#primary-slider', {
+		type       : 'fade',
+		heightRatio: 0.5,
+		pagination : false,
+		arrows     : false,
+		cover      : true,
+	}); 
+    primarySlider.sync( secondarySlider ).mount();
     
+    $('#summernote').summernote({
+        height: 250
+    });
 });
 function changeBackground(img){
     let preview_div = $(img).siblings("div#avatar_div");

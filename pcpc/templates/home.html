@@ -20,7 +20,67 @@
             <div class="left_line h-100" ></div>
         </div>
     </header>
-    <div class="problemset_archive">
+    <div class="annotations p-5" dir="ltr">
+        <div id="primary-slider">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="d-flex">
+                                <div class="col-7 ">
+                                    <img src="{{ url_for('static', filename='img/announcements/1.jpg')}}">
+                                </div>
+                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
+
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="d-flex">
+                                <div class="col-7 ">
+                                    <img src="{{ url_for('static', filename='img/announcements/2.jpg')}}">
+                                </div>
+                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="d-flex">
+                                <div class="col-7 ">
+                                    <img src="{{ url_for('static', filename='img/announcements/3.jpg')}}">
+                                </div>
+                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
+                            </div>
+
+                        </li>
+                        <li class="splide__slide">
+                            <div class="d-flex">
+                                <div class="col-7 ">
+                                    <img src="{{ url_for('static', filename='img/announcements/4.jpg')}}">
+                                </div>
+                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div id="secondary-slider" class="splide py-4">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="{{ url_for('static', filename='img/announcements/1.jpg')}}">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ url_for('static', filename='img/announcements/2.jpg')}}">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ url_for('static', filename='img/announcements/3.jpg')}}">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ url_for('static', filename='img/announcements/4.jpg')}}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="problemset_archive py-5 my-5">
         <article id="archive" class="bg-white position-relative my-2 p-4 ">
             <h4 class="mb-2 pb-2">آرشیو سوالات ادوار گذشته</h4>
             <div class="right d-flex flex-column"  style="background-image: url({{ url_for('static', filename='img/archive.png')}})">

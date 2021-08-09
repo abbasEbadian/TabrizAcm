@@ -320,7 +320,10 @@ nav.white_theme a{
         width: 215px;
         margin: 10px 0;
     }
-    
+    #home_page  .splide__slide img {
+        width : 100%;
+        height: auto;
+    }
     #home_page #archive img{
         max-height: 100%;
     }
