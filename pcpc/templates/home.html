@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-<div id="home_page">
+<div id="home_page" >
     <header class="position-relative d-grid align-items-bottom" style="background-image: url({{ url_for('static', filename='img/home-page-bg.png')}});">
         <div class="overlay w-50 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
         <div class="content">
@@ -20,5 +20,74 @@
             <div class="left_line h-100" ></div>
         </div>
     </header>
+    <div class="problemset_archive">
+        <article id="archive" class="bg-white position-relative my-2 p-4 ">
+            <h4 class="mb-2 pb-2">آرشیو سوالات ادوار گذشته</h4>
+            <div class="right d-flex flex-column"  style="background-image: url({{ url_for('static', filename='img/archive.png')}})">
+                <a class="btn get_problemset" id="problemset_all" href="#">تمام دوره ها</a>
+                <a class="btn get_problemset" id="problemset_1" href="#">دوره اول - بابل</a>
+                <a class="btn get_problemset" id="problemset_2" href="#">دوره دوم - مشهد</a>
+                <a class="btn get_problemset" id="problemset_3" href="#">دوره سوم - همدان</a>
+                <a class="btn get_problemset" id="problemset_4" href="#">دوره چهارم - تهران</a>
+            </div>
+
+            <div class="left">
+                <!-- <h3>آرشیو سوالات سال های گذشته</h3> -->
+            </div>
+        </article>
+    </div>
+    <div class="prev_archive">
+        <article>
+            <div class="overlayed position-relative babol d-flex justify-content-end ">
+                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/tehran.jpg' ) }})"></div>
+                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
+                <div class="c position-relative align-items-start px-5">
+                    <h4>PCPC به میزبانی بابل</h4>
+                    <h5></h5>
+                    <a class="btn text-white" href="#">
+                        مشاهده اطلاعیه ها
+                        <i class="bi-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="overlayed mashhad position-relative">
+                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/mashhad.jpg' ) }})"></div>
+                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
+                <div class="c  position-relative px-5">
+                    <h4>PCPC به میزبانی مشهد</h4>
+                    <h5></h5>
+                    <a class="btn text-white" href="#">
+                        مشاهده اطلاعیه ها
+                        <i class="bi-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="overlayed hamedan position-relative  d-flex justify-content-end">
+                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/hamedan.jpg' ) }})"></div>
+                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
+                <div class="c position-relative px-5">
+                    <h4>PCPC به میزبانی همدان</h4>
+                    <h5></h5>
+                    <a class="btn text-white" href="#">
+                        مشاهده اطلاعیه ها
+                        <i class="bi-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="overlayed tehran position-relative">
+                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/tehran.jpg' ) }})"></div>
+                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
+                <div class="c position-relative  px-5">
+                    <h4>PCPC به میزبانی تهران</h4>
+                    <h5></h5>
+                    <a class="btn text-white"  href="#">
+                        مشاهده اطلاعیه ها
+                        <i class="bi-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+    
 </div>
 {% endblock main %}

@@ -321,6 +321,115 @@ nav.white_theme a{
         margin: 10px 0;
     }
     
+    #home_page #archive img{
+        max-height: 100%;
+    }
+    #home_page #archive a#problemset_1{
+        background-color: #B42E1C;
+        color: white;
+    }
+    #home_page #archive a#problemset_2{
+        background-color: #FCCA1F;
+        color: white;
+    }
+    #home_page #archive a#problemset_3{
+        background-color: #5385C1;
+        color: white;
+    }
+    #home_page #archive a#problemset_4{
+        background-color: #093155;
+        color: white;
+    }
+    #home_page #archive a#problemset_all{
+        background-color: #093155;
+        color: white;
+    }
+    #home_page #archive >div{
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-left: 3px solid #ccc;
+    }
+    #home_page #archive a{
+        height: 52px;
+        margin: 6px 0;
+        max-width: 300px;
+        z-index: 1;
+        line-height: 33px;
+        opacity: 0.9;
+        transition: 0.2s;
+    }
+    #home_page #archive a:hover{
+        opacity: 1;
+    }
+    #home_page  .prev_archive .overlay{
+        background-color: #000;
+    }
+
+    .prev_archive .overlayed{
+        height:200px;
+    }
+    .prev_archive .overlayed .c a{
+        width: 180px;
+        white-space: nowrap;
+        padding: 6px 4px 6px 10px;
+        position: relative;
+        opacity: 0.9;
+    }
+    .prev_archive .overlayed .c a{
+        opacity: 1;
+    }
+
+    .prev_archive .overlayed .c a i{ 
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
+
+    .prev_archive .overlayed .c{
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        color: white;
+    }
+    
+    .prev_archive .overlayed .c{
+        width: max-content;
+    }
+    .prev_archive .overlayed > div.image{
+        height: 200px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+    }
+    .prev_archive .overlayed.babol > div.image{
+        background-position: 0 -100px; 
+    }
+    .prev_archive .overlayed.mashhad > div.image{
+        background-position: 0 -100px; 
+    }
+    .prev_archive .overlayed.hamedan > div.image{
+        background-position: 0 -244px; 
+    }
+    .prev_archive .overlayed.tehran > div.image{
+        background-position: 0 -92px; 
+        transform:scaleX(-1);
+    }
+    .prev_archive .overlayed.babol > div.c a{
+        background-color: #B42E1C;
+    }
+    .prev_archive .overlayed.mashhad > div.c a{
+        background-color: #FCCA1F;
+    }
+    .prev_archive .overlayed.hamedan > div.c a{
+        background-color: #5385C1; 
+    }
+    .prev_archive .overlayed.tehran > div.c a{
+        background-color: #093155;
+    }
+
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;

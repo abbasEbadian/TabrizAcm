@@ -39,7 +39,7 @@ $(function(ready){
             "background-color": function() {
                 var elementHeight = $(this).height();
                 var opacity = ((1 - (elementHeight - scrollTop) / elementHeight) ) ;
-                return `rgba(5,5,5,${opacity})`;
+                return `rgba(9, 49, 85,${opacity})`;
             },
             "padding-top": function () {
                 return `${Math.max(max_pad - scrollTop, 5)}px`;
