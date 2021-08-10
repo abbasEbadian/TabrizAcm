@@ -71,3 +71,8 @@ class ContactForm(FlaskForm):
     validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off", "placeholder": "example@gmail.com"})
     text = TextAreaField(u'متن', [DataRequired(message=empty_message), length(max=200)], render_kw={"placeholder": "متن پیام"})
     submit = SubmitField('ارسال')
+
+class AnnounceForm(FlaskForm):
+    title = StringField('', validators=[DataRequired(message=empty_message)], render_kw={"autocomplete": "off", "placeholder": "عنوان اطلاعیه"})
+    image = FileField('', validators=[DataRequired(message=empty_message)], render_kw={"autocomplete": "off"})
+    html = TextAreaField(u'متن', [DataRequired(message=empty_message), length(max=2000)], render_kw={"placeholder": "متن اطلاعیه"})

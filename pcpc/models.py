@@ -25,6 +25,10 @@ class User(db.Model, UserMixin):
     image = db.Column(db.String(100), default='img/default_user.png')
     create_date = db.Column(db.DateTime, default=datetime.utcnow)
 
+    @property
+    def is_admin(self):
+        return self.id == 1
+
     def __repr__(self):
         return str(self.id) + ":" + self.name + " " + self.identifier 
     
@@ -47,4 +51,11 @@ class ContactUs(db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(50))
     text = db.Column(db.String(200))
+    create_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Announcement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50))
+    html = db.Column(db.String(9999))
+    image = db.Column(db.String(100))
     create_date = db.Column(db.DateTime, default=datetime.utcnow)

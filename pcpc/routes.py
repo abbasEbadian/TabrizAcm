@@ -2,10 +2,10 @@ from wtforms.form import FormMeta
 from pcpc import app
 from flask import render_template, request, flash, redirect, url_for, jsonify
 import json, os
-from pcpc.models import User, Team, ContactUs
-from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm
+from pcpc.models import User, Team, ContactUs, Announcement
+from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm, AnnounceForm
 from sqlalchemy import desc, or_
-from pcpc import db, app, bcrypt, profile_pics, question_pics
+from pcpc import db, app, bcrypt, profile_pics, question_pics, announcement_pics
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime, timedelta
 from datetime import date as ddate
@@ -18,6 +18,43 @@ def home():
         "navbar_text_color": "white",
     }
     return render_template("home.html", **data)
+
+@app.route('/admin/<menu_name>/<param1>')
+@app.route('/admin/<menu_name>', methods=["POST", "GET"])
+@app.route('/admin/')
+@login_required
+def admin(menu_name=None, param1=None):
+    if not menu_name: return redirect('/admin/announcements')
+    admin_template_path = os.path.join(app.instance_path.replace('instance', app.config['APP_NAME']), 'templates', 'admin')
+    if not os.path.isfile(os.path.join(admin_template_path, menu_name+'.html')):
+        return page_not_found(404)
+    if not current_user.is_admin: 
+        return forbidden403(403)
+    data = {
+        "announcements": Announcement.query.all(),
+        "teams": Team.query.all(),
+        "contacts": ContactUs.query.all(),
+        "title": "ادمین اطلاعیه ها",
+        "hide_navbar": True
+    }    
+    if menu_name == 'announcements':
+        form = AnnounceForm()
+        data["form"] = form
+        print("test0")
+        print(form.errors)
+        # print(form.validate_on_submit())
+        if form.validate_on_submit():
+            title = form.title.data
+            image = form.image.data
+            html = form.html.data
+            announcement_pics.save(image)
+            a = Announcement(title=title, html=html)
+            a.image = "uploads/announcement_pics/" + image.filename
+            flash("با موفقیت ایجاد شد.", "info")
+            db.session.add(a)
+            db.session.commit()
+    return render_template(f"/admin/{menu_name}.html", **data)
+
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
@@ -115,3 +152,10 @@ def contact_us():
         "navbar_text_color": "white",
     }
     return render_template('contact-us.html', **data)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect( url_for("login") )

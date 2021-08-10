@@ -1,0 +1,35 @@
+<div class="col-3 sidebar  h-100 ps-0">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-lightblue  h-100" >
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none" dideo-checked="true">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-4">داشبرد ادمین</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="/admin/announcements" class="nav-link {{ active_tab == 'announcements' and 'active' or 'link-dark' }}" aria-current="page" >
+              <span class="me-3 fs-5 bi bi-file-earmark-text"></span>
+                اطلاعیه ها
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/contact_us" class="nav-link  {{ active_tab == 'contact_us' and 'active' or 'link-dark' }}" >
+              <span class="me-3 fs-5 bi bi-file-earmark-plus"></span>
+              پیام های کاربران
+            </a>    
+          </li>
+          <li class="nav-item">
+            <a href="/admin/teams" class="nav-link   {{ active_tab == 'edit_exam' and 'active' or 'link-dark' }}" >
+              <span class="me-3 fs-5 bi bi-file-earmark-medical"></span>
+              تیم ها
+            </a>    
+          </li>
+          <li class="nav-item d-md-none">
+              <a href="/logout" class="nav-link link-dark " >
+                <span class="me-3 fs-5 bi bi-arrow-bar-right"></span>
+                خروج
+              </a>
+            </li>
+        </ul>
+      </div>
+</div>

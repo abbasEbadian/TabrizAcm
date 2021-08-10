@@ -432,7 +432,41 @@ nav.white_theme a{
     .prev_archive .overlayed.tehran > div.c a{
         background-color: #093155;
     }
-
+    form#new_announcement_form{
+        display: flex;
+        overflow: hidden;
+    }
+    div.image_preview{
+        height: 250px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 8px;  
+        background-color: #e4e4e4;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
+    div.image_preview .placeholder_image{
+        width: 100px;
+        height: 100px;
+        pointer-events: none;
+    }
+    div.image_preview .help_text{
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        background: #555d;
+        padding: 4px;
+        border-radius: 4px;
+        color: white;
+        font-size: 12px;
+    }
+    div.image_preview + input.image_input{
+        display: none;
+    }
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;

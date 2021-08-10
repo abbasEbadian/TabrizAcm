@@ -14,10 +14,12 @@ app.config["UPLOADS_DEFAULT_DEST"] = app.config["APP_NAME"] + '/static'
 app.config["UPLOADS_DEFAULT_URL"] = app.config["APP_NAME"] + '/static'
 app.config["UPLOADED_PROFILEPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"] + '/uploads/profile_pics'
 app.config["UPLOADED_QUESTIONPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"]+'/uploads/question_pics'
+app.config["UPLOADED_ANNOUNCEMENTPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"]+'/uploads/announcement_pics'
 app.config["UPLOADS_DEFAULT_URL"] = 'uploads/images'
 profile_pics = UploadSet('profilepics', IMAGES)
 question_pics = UploadSet('questionpics', IMAGES)
-configure_uploads(app, (profile_pics, question_pics))
+announcement_pics = UploadSet('announcementpics', IMAGES)
+configure_uploads(app, (profile_pics, question_pics, announcement_pics))
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -29,7 +31,3 @@ login_manager.login_message_category   = "info"
 from pcpc.routes import *
 from pcpc.models import *
 
-if not User.query.all():
-    admin = User(name="ادمین", identifier="admin", user_type="admin", password=bcrypt.generate_password_hash("admin"))
-    db.session.add_all([admin])
-    db.session.commit()
