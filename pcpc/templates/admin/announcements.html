@@ -6,49 +6,86 @@
             {% include '/admin/admin_sidebar.html' %}
             {% endwith %}
             <div class="col-9 content ms-auto pt-3">
-                <article class="" id="announcements">
-                    <h4 class="my-2">اطلاعیه ها</h4>
-                    <hr>
-                    <button class="btn btn-main mb-4 rounded" onclick='add_new_announcement(this)'>اطلاعیه جدید</button>
-                    {% with messages = get_flashed_messages(with_categories=True) %}
-                        {% for c,m in messages%}
-                            <div class="alert alert-{{c}}">{{m}}</div>
-                        {% endfor %}
-                    {% endwith %}
-                    <form action="" class="flex-wrap d-none" id="new_announcement_form" method="POST" enctype="multipart/form-data">
-                        {{ form and form.hidden_tag()}}
-                        <div class="col-12 col-md-8 pe-2">
-                            {{ form.title(class="title form-control {{ form.identifier.errors and is-invalid }}") }}
-                            {% if form.title.errors %}
-                                <div class="invalid-feedback">
-                                    {% for error in form.identifier.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-12 col-md-4 ps-2">
-                            <div class="image_preview" >
-                                <img class="placeholder_image placeholder" src="{{ url_for('static', filename='img/camera.png')}}" /> 
-                                <small class='placeholder_text placeholder'>افزودن تصویر</small>
-                                <small class='help_text d-none'>برای تغییر کلیک کنید.</small>
+                <h4 class="my-2 pb-2">اطلاعیه ها</h4>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#announcements">همه </a></li>
+                        <li><a href="#new_announcement">جدید </a></li>
+                        <li><a href="#edit_announcements">ویرایش</a></li>
+                    </ul>
+                    <article class="" id="announcements">
+                        {% with messages = get_flashed_messages(with_categories=True) %}
+                            {% for c,m in messages%}
+                                <div class="alert alert-{{c}}">{{m}}</div>
+                            {% endfor %}
+                        {% endwith %}
+                        
+                        {% if not announcements %}
+                            <div class="alert alert-info">
+                                اطلاعیه ای ثبت نشده است.
                             </div>
-                            {{ form.image(class="d-none", id="avatar_input", accept=".png, .jpg, .jpeg") }}
-                        </div>
-                        <div class="col-12 ">
-                                {{ form.html(id="summernote") }}
-                        </div>
-                        <div class="col-12 py-3 justify-content-end d-flex">
-                            <button class="btn btn-primary" type="submit">ایجاد و انتشار</button>
-                        </div>
-                    </form>
-                    {% if not announcements %}
-                        <div class="alert alert-info">
-                            اطلاعیه ای ثبت نشده است.
-                        </div>
-                    {% else %}
-                    {% endif %}
-                </article>
+                        {% else %}
+                        <div class="announcements ">
+                                {% for announcement in announcements %}
+                                    <div class="announcement border p-3 mb-2 d-flex flex-wrap">
+                                        <div class="col-12 d-flex align-items-center mb-4">
+                                            <h5>{{ announcement.title }}</h5>
+                                            <form class="ms-auto" action="/delete/announcement/{{ announcement.id  }}" method="POST">
+                                                <button type="submit" class="btn btn-sm  btn-danger"> حذف </button>
+                                            </form>
+                                            <a type="submit" href="{{ announcement.id }}" class="btn btn-sm btn-info ms-2"> ویرایش </button>
+                                        </div>
+                                        <div class="col-12 col-md-6 content">
+                                            <div>{{ announcement.html | safe }}</div>
+                                        </div>
+                                        <div class="col-12 col-md-6 image">
+                                            <div class="image" style="background-image: url({{ url_for('static', filename=announcement.image or 'img/camera.png'  ) }})"></div>
+                                        </div>
+                                        
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            </div>
+                        </article>
+                        <article id="new_announcement">
+                                <form action="" class="flex-wrap" id="new_announcement_form" method="POST" enctype="multipart/form-data">
+                                    {{ form and form.hidden_tag()}}
+                                    <div class="col-12 col-md-8 pe-2">
+                                        {{ form.title(class="title form-control {{ form.identifier.errors and is-invalid }}") }}
+                                        {% if form.title.errors %}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.identifier.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-12 col-md-4 ps-2">
+                                        <div class="image_preview" >
+                                            <img class="placeholder_image placeholder" src="{{ url_for('static', filename='img/camera.png')}}" /> 
+                                            <small class='placeholder_text placeholder'>افزودن تصویر</small>
+                                            <small class='help_text d-none'>برای تغییر کلیک کنید.</small>
+                                        </div>
+                                        {{ form.image(class="d-none", id="avatar_input", accept=".png, .jpg, .jpeg") }}
+                                    </div>
+                                    <div class="col-12 ">
+                                            {{ form.html(id="summernote") }}
+                                    </div>
+                                    <div class="col-12 py-3 justify-content-end d-flex">
+                                        <button class="btn btn-primary" type="submit">ایجاد و انتشار</button>
+                                    </div>
+                                </form>
+                        </article>
+                        <article id="edit_announcement">
+                            {% if not announcements %}
+                                <div class="alert alert-info">
+                                    اطلاعیه ای ثبت نشده است.
+                                </div>
+                            {% else %}
+                            {% endif %}
+                        </article>
+                </div>
+                
             </div>
         </div> 
        

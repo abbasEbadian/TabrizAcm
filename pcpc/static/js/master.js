@@ -32,7 +32,7 @@ $( e=> {
         }
         changeBackground(this);
     });
-    
+    $("#tabs").tabs();
     $(window).scroll(function() {
         var scrollTop = $(this).scrollTop();
         var max_pad = 50;

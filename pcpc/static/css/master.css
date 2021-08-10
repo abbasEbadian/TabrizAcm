@@ -467,6 +467,12 @@ nav.white_theme a{
     div.image_preview + input.image_input{
         display: none;
     }
+    .announcement .image{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        min-height: 250px;
+    }
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;
