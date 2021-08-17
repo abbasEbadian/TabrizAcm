@@ -10,6 +10,11 @@ from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime, timedelta
 from datetime import date as ddate
 
+@app.route('/api')
+def api():
+    return {
+        "count": "1"
+    }
 @app.route("/")
 def home():
     data = {
