@@ -15,6 +15,12 @@ def api():
     return {
         "count": "1"
     }
+@app.route('/is_authenticated')
+def is_authenticated():
+    return {
+        "is_authenticated": current_user.is_authenticated
+    }
+
 @app.route("/")
 def home():
     data = {
@@ -63,23 +69,32 @@ def admin(menu_name=None, param1=None):
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-
-    form = LoginForm()
-    user = User.query.filter(User.identifier==form.identifier.data).first()
-    if form.validate_on_submit():
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            return redirect(url_for('home'))
-        else:
-            flash("شماره دانشجویی یا رمز عبور اشتباه است", 'danger')
-    data = {
-        "hide_navbar": True,
-        "form": form,
-        "title": "PCPC - Login"
-    }
-    return render_template('login.html', **data)
+    redirect_url = None
+    message = None
+    try:
+        if current_user.is_authenticated:
+            return json.dumps({
+                "redirect_url": "/"
+            })
+        data = request.get_json()
+        identifier = data.get("identifier")
+        password = data.get("password")
+        remember = data.get("remember")
+        user = User.query.filter(User.identifier==identifier).first()
+        if request.method == 'POST' :
+            if user and bcrypt.check_password_hash(user.password, password):
+                login_user(user, remember=remember)
+                redirect_url =  '/'
+            else:
+                message = ["شماره دانشجویی یا رمز عبور اشتباه است", "danger"]
+        
+    except Exception as e:
+        message = ["خطا", "danger"]
+        print(e)
+    return json.dumps({
+        "redirect_url": redirect_url,
+        "message": message
+    })
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -159,8 +174,7 @@ def contact_us():
     return render_template('contact-us.html', **data)
 
 
-@app.route('/logout')
-@login_required
+@app.route('/logout', methods=["POST", "GET"])
 def logout():
     logout_user()
-    return redirect( url_for("login") )
+    return jsonify({"result": "success"})
