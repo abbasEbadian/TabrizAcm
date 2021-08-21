@@ -1,0 +1,21 @@
+<article class="" id="announcements">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% for c,m in messages%}
+            <div class="alert alert-{{c}}">{{m}}</div>
+        {% endfor %}
+    {% endwith %}
+    
+    {% if not announcements %}
+        <div class="alert alert-info">
+            اطلاعیه ای ثبت نشده است.
+        </div>
+    {% else %}
+    <div class="announcements ">
+        {% for announcement in announcements %}
+            {% with announcement = announcement %}
+                {% include "/admin/announcements/one.html" %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</article>

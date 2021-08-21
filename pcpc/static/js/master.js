@@ -33,6 +33,14 @@ $( e=> {
         changeBackground(this);
     });
     $("#tabs").tabs();
+    $("#tabs").removeClass('d-none');
+    $("#select_for_edit").change(e=>{
+        var url = $(this).val(); 
+          if (url) { // require a URL
+              window.location = window.location.pathname + '/edit/' + url; // redirect
+          }
+          return false;
+    });
     $(window).scroll(function() {
         var scrollTop = $(this).scrollTop();
         var max_pad = 50;
@@ -84,10 +92,10 @@ $( e=> {
         }
         changeBackground(this);
     });
-    $('#summernote').summernote({
+    $('.summernote').summernote({
         height: 250
     });
-    $('#summernote').summernote();
+    // $('#summernote').summernote();
 });
 function changeBackground(img){
     let preview_div = $(img).siblings("div.image_preview");

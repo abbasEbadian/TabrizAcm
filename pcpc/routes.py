@@ -24,7 +24,7 @@ def home():
     }
     return render_template("home.html", **data)
 
-@app.route('/admin/<menu_name>/<param1>')
+@app.route('/admin/<menu_name>/edit/<param1>')
 @app.route('/admin/<menu_name>', methods=["POST", "GET"])
 @app.route('/admin/')
 @login_required
@@ -36,7 +36,6 @@ def admin(menu_name=None, param1=None):
     if not current_user.is_admin: 
         return forbidden403(403)
     data = {
-        "announcements": Announcement.query.all(),
         "teams": Team.query.all(),
         "contacts": ContactUs.query.all(),
         "title": "ادمین اطلاعیه ها",
@@ -45,19 +44,30 @@ def admin(menu_name=None, param1=None):
     if menu_name == 'announcements':
         form = AnnounceForm()
         data["form"] = form
-        print("test0")
-        print(form.errors)
-        # print(form.validate_on_submit())
         if form.validate_on_submit():
             title = form.title.data
             image = form.image.data
             html = form.html.data
             announcement_pics.save(image)
-            a = Announcement(title=title, html=html)
-            a.image = "uploads/announcement_pics/" + image.filename
-            flash("با موفقیت ایجاد شد.", "info")
-            db.session.add(a)
+            if not param1:
+                a = Announcement(title=title, html=html)
+                a.image = "uploads/announcement_pics/" + image.filename
+                flash("با موفقیت ایجاد شد.", "info")
+                db.session.add(a)
+            else:
+                ann = Announcement.query.get(int(param1))
+                if ann:
+                    ann.title = title
+                    ann.html = html
+                    ann.image = image
+                    
             db.session.commit()
+        if param1:
+            ann = Announcement.query.get(int(param1))
+            data["edit_ann"] = ann
+
+           
+    data["announcements"] =  Announcement.query.all()
     return render_template(f"/admin/{menu_name}.html", **data)
 
 
@@ -164,3 +174,16 @@ def contact_us():
 def logout():
     logout_user()
     return redirect( url_for("login") )
+
+
+@app.route('/delete/announcement/<int:id>', methods=["GET", "POST"])
+@login_required
+def delete_announcement(id):
+    ann = Announcement.query.get(int(id))
+    if ann:
+        db.session.delete(ann)
+        db.session.commit()
+        flash('با موفقیت حذف شد.', 'success')
+    else:
+        flash('خطا !', "danger")
+    admin('announcements')
