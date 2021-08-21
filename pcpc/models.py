@@ -7,13 +7,8 @@ DATE_FORMAT = "%Y/%m/%d"
 TIME_FORMAT = "%H:%M"
 DATETIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
-
-
-class User(db.Model, UserMixin):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     identifier = db.Column(db.String(10), nullable=False, unique=True)
@@ -23,11 +18,36 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(32))
     team = db.relationship('Team', backref=db.backref("members"))
     image = db.Column(db.String(100), default='img/default_user.png')
+    roles = db.Column(db.Text)
+    is_active = db.Column(db.Boolean, default=True, server_default='true')
+
     create_date = db.Column(db.DateTime, default=datetime.utcnow)
 
     @property
     def is_admin(self):
         return self.id == 1
+
+    @property
+    def rolenames(self):
+        try:
+            return self.roles.split(',')
+        except Exception:
+            return []
+
+    @classmethod
+    def lookup(cls, username):
+        return cls.query.filter_by(identifier=username).one_or_none()
+
+    @classmethod
+    def identify(cls, id):
+        return cls.query.get(id)
+
+    @property
+    def identity(self):
+        return self.id
+
+    def is_valid(self):
+        return self.is_active
 
     def __repr__(self):
         return str(self.id) + ":" + self.name + " " + self.identifier 

@@ -480,6 +480,10 @@ nav.white_theme a{
         background-size: contain;
         min-height: 250px;
     }
+    i.devider{
+        width: 1px;
+        height:10px;
+    }
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;

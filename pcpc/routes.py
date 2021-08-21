@@ -5,10 +5,11 @@ import json, os
 from pcpc.models import User, Team, ContactUs, Announcement
 from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm, AnnounceForm
 from sqlalchemy import desc, or_
-from pcpc import db, app, bcrypt, profile_pics, question_pics, announcement_pics
+from pcpc import db, app, bcrypt, profile_pics, question_pics, announcement_pics, guard
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime, timedelta
 from datetime import date as ddate
+import flask_praetorian 
 
 @app.route('/api')
 def api():
@@ -67,34 +68,70 @@ def admin(menu_name=None, param1=None):
     return render_template(f"/admin/{menu_name}.html", **data)
 
 
-@app.route('/login', methods=["POST", "GET"])
-def login():
-    redirect_url = None
-    message = None
-    try:
-        if current_user.is_authenticated:
-            return json.dumps({
-                "redirect_url": "/"
-            })
-        data = request.get_json()
-        identifier = data.get("identifier")
-        password = data.get("password")
-        remember = data.get("remember")
-        user = User.query.filter(User.identifier==identifier).first()
-        if request.method == 'POST' :
-            if user and bcrypt.check_password_hash(user.password, password):
-                login_user(user, remember=remember)
-                redirect_url =  '/'
-            else:
-                message = ["شماره دانشجویی یا رمز عبور اشتباه است", "danger"]
+# @app.route('/login', methods=["POST", "GET"])
+# def login():
+#     redirect_url = None
+#     message = None
+#     try:
+#         if current_user.is_authenticated:
+#             return json.dumps({
+#                 "redirect_url": "/"
+#             })
+#         data = request.get_json()
+#         identifier = data.get("identifier")
+#         password = data.get("password")
+#         remember = data.get("remember")
+#         user = User.query.filter(User.identifier==identifier).first()
+#         if request.method == 'POST' :
+#             if user and bcrypt.check_password_hash(user.password, password):
+#                 login_user(user, remember=remember)
+#                 redirect_url =  '/'
+#             else:
+#                 message = ["شماره دانشجویی یا رمز عبور اشتباه است", "danger"]
         
-    except Exception as e:
-        message = ["خطا", "danger"]
-        print(e)
-    return json.dumps({
-        "redirect_url": redirect_url,
-        "message": message
-    })
+#     except Exception as e:
+#         message = ["خطا", "danger"]
+#         print(e)
+#     return json.dumps({
+#         "redirect_url": redirect_url,
+#         "message": message
+#     })
+
+@app.route("/api/login", methods=["POST"])
+def login_2():
+    req = request.get_json(force=True)
+    username = req.get('identifier', None)
+    password = req.get('password', None)
+    user = guard.authenticate(username, password)
+    ret = {'access_token': guard.encode_jwt_token(user)}
+    return ret, 200
+
+@app.route('/api/refresh', methods=['POST'])
+def refresh():
+    """
+    Refreshes an existing JWT by creating a new one that is a copy of the old
+    except that it has a refrehsed access expiration.
+    .. example::
+       $ curl http://localhost:5000/api/refresh -X GET \
+         -H "Authorization: Bearer <your_token>"
+    """
+    print("refresh request")
+    old_token = request.get_data()
+    new_token = guard.refresh_jwt_token(old_token)
+    ret = {'access_token': new_token}
+    return ret, 200
+  
+@app.route('/api/protected')
+@flask_praetorian.auth_required
+def protected():
+    """
+    A protected endpoint. The auth_required decorator will require a header
+    containing a valid JWT
+    .. example::
+       $ curl http://localhost:5000/api/protected -X GET \
+         -H "Authorization: Bearer <your_token>"
+    """
+    return {'message': f'protected endpoint (allowed user {flask_praetorian.current_user().username})'}
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
