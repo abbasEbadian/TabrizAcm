@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { Link, Redirect } from 'react-router-dom';
 import DoubleLogo from '../Snippets/DoubleLogo';
+import {login} from "../auth";
+
 const Login = (props)=>{
-    const [template, setTemplate] = useState("<div></div>");
     const [message, setMessage] = useState([]);
     const [identifier, setIdentifier] = useState('');
     const [identifierError, setIdentifierError] = useState(undefined);
@@ -10,6 +11,8 @@ const Login = (props)=>{
     const [passwordError, setPasswordError] = useState(undefined);
     const [remember, setRemember] = useState(false);
     const [authenticated, setAuthenticated ] =  useState(props.authenticated);
+
+    const LOGIN_URL = "/api/login";
     useEffect(()=>{
         document.title = props.title;
     }, []);
@@ -33,7 +36,7 @@ const Login = (props)=>{
             setPasswordError("نمیتواند خالی باشد.");
             return;
         }
-        fetch('/login', {
+        fetch(LOGIN_URL, {
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json'
@@ -42,9 +45,8 @@ const Login = (props)=>{
             body: JSON.stringify({identifier, password, remember}) 
           }).then(response=>{   
               response.json().then(data=>{
-                  console.log(data.redirect_url);
-                  
-                  if (data.redirect_url){
+                  if (data.access_token){
+                      login(data.access_token)
                       setAuthenticated(true);
                   }
                   else{
@@ -80,7 +82,7 @@ const Login = (props)=>{
                             
                             
                             <div className="input-group mb-3  bg-none new_design_inputs">
-                                <input className="form-control form-control-lg pe-5" name="password" placeholder=" " value={password} onChange={handlePassword}/>
+                                <input className="form-control form-control-lg pe-5" name="password" type="password" placeholder=" " value={password} onChange={handlePassword}/>
                                 <label htmlFor="password" className="form-control-label pb-2">رمز عبور</label>
 
                                 <i className="bi-shield-lock-fill"></i>
