@@ -31,3 +31,6 @@ login_manager.login_message_category   = "info"
 from pcpc.routes import *
 from pcpc.models import *
 
+if not User.query.first():
+    db.session.add(User(name="admin",identifier="admin", password=bcrypt.generate_password_hash("admin")))
+    db.session.commit()

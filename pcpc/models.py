@@ -1,8 +1,9 @@
 from datetime import datetime, time
 from pcpc import db, login_manager
 from flask_login import UserMixin
-import jdatetime
-from flask import url_for
+import jdatetime, random
+from flask import url_for, jsonify
+from functools import partial
 DATE_FORMAT = "%Y/%m/%d"
 TIME_FORMAT = "%H:%M"
 DATETIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT
@@ -30,21 +31,37 @@ class User(db.Model, UserMixin):
         return self.id == 1
 
     def __repr__(self):
-        return str(self.id) + ":" + self.name + " " + self.identifier 
+        return f"{self.id or ''} : {self.name or ''} : {self.identifier or ''} "
     
+def _gencode():
+    return "Team-"+str(random.randint(1001,9999))
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.String(10), unique=True)
+    code = db.Column(db.String(10), unique=True, default=_gencode)
     name = db.Column(db.String(50))
-    english_name = db.Column(db.String(50))
     city = db.Column(db.String(50))
-    english_city = db.Column(db.String(50))
-    team_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
-    id = db.Column(db.Integer, primary_key=True)
+    team_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    create_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    
+    @property
+    def unicode(self):
+        return self.code
+    @property
+    def j(self):
+        x = {
+            "name": self.name,
+            "code": self.unicode,
+            "city": self.city,
+            "members": len(User.query.join(Team).filter_by(unicode=self.unicode).all())
+        }
+        print(x)
+        return x
 
     def __repr__(self):
-        return str(self.id) + ":" + self.name + " From " + self.city
+        # return f"{self.id or ''} : {self.name or ''} : {self.code or ''}"
+        return f"{self.id or ''}: {self.name or ''} : {self.code or ''}"
 
 class ContactUs(db.Model):
     id = db.Column(db.Integer, primary_key=True)

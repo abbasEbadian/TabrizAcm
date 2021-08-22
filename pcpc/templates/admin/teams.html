@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main %}
+    <main class="admin_dashboard h-100">
+        <div class="row m-0  h-100">
+            {% with active_tab = 'teams' %}
+            {% include '/admin/admin_sidebar.html' %}
+            {% endwith %}
+            <div class="col-9 content ms-auto pt-3">
+                <h4 class="my-2 pb-2 mb-5">تیم ها</h4>
+                <article class="" id="teams">
+                        {% with messages = get_flashed_messages(with_categories=True) %}
+                            {% for c,m in messages%}
+                                <div class="alert alert-{{c}}">{{m}}</div>
+                            {% endfor %}
+                        {% endwith %}
+                        <div class="teams ">
+                            <div class="mb-2">
+                                <button class="btn btn-outline-success" id="reactivity-add">افزودن تیم</button>
+                                <button class="btn btn-outline-success" id="reactivity-delete">حذف تیم</button>
+                            </div>
+                           <table id="teams-table" class="">
+                               {#<!-- <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">نام تیم</th>
+                                    <th scope="col">کد یکتا</th>
+                                    <th scope="col">شهر</th>
+                                    <th scope="col">تعداد اعضا</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                {% for team in teams %}
+                                    <tr>
+                                        <th scope="row">{{loop.index}}</td>
+                                        <td>{{ team.name | capitalize }}</td>
+                                        <td>{{ team.unicode }}</td>
+                                        <td>{{ team.city }}</td>
+                                        <td>{{ team.memebers | length  }}</td>
+                                    </tr>
+                                {% endfor %}
+                               </tbody> -->#}
+                           </table>
+                        </div>
+                    </article>
+            </div>
+        </div> 
+       
+    </main>
+{% endblock %}

@@ -43,6 +43,7 @@ def admin(menu_name=None, param1=None):
     data = {
         "teams": Team.query.all(),
         "contacts": ContactUs.query.all(),
+        "teams": Team.query.all(),
         "title": "ادمین اطلاعیه ها",
         "hide_navbar": True
     }    
@@ -71,7 +72,8 @@ def admin(menu_name=None, param1=None):
             ann = Announcement.query.get(int(param1))
             data["edit_ann"] = ann
 
-           
+    if menu_name == 'teams':
+        data["form"] = AnnounceForm()
     data["announcements"] =  Announcement.query.all()
     return render_template(f"/admin/{menu_name}.html", **data)
 
@@ -192,3 +194,58 @@ def delete_announcement(id):
     else:
         flash('خطا !', "danger")
     admin('announcements')
+
+
+
+
+
+@app.route('/teams', methods=["POST", "GET"])
+def get_teams():
+    teams = [t.j for t in Team.query.all()]
+    teams = tuple([{**r, "id": t+1} for t,r in enumerate(teams)])
+    return jsonify(teams)
+    # return {"data": teams}
+
+
+@app.route('/team/delete/<code>', methods=["POST", "GET"])
+@login_required
+def delete_team(code):
+    message = "success"
+    t = Team.query.filter_by(code=code)
+    if current_user.is_admin and t:
+        t.delete()
+        db.session.commit()
+    else:
+        message = "fail"
+
+    return jsonify({"result": message})
+
+
+@app.route('/team/name', methods=["POST"])
+@login_required
+def update_team_name():
+    name = request.form.get("name")
+    team_code = request.form.get("code")
+    if team_code:
+        t = Team.query.filter_by(code=team_code).first()
+        print(t)
+        if t:t.name = name
+        db.session.commit() 
+
+    else:
+        t = Team(name=name, code=team_code)
+        db.session.add(t)
+    db.session.commit() 
+    return jsonify({"result":"success"})
+
+@app.route('/team/city', methods=["POST"])
+@login_required
+def update_team_city():
+    city = request.form.get("city")
+    team_code = request.form.get("code")
+    if team_code:
+        t = Team.query.filter_by(code=team_code).first()
+        if t:t.city = city
+        db.session.commit() 
+    db.session.commit() 
+    return jsonify({"result":"success"})

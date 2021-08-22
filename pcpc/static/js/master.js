@@ -33,8 +33,7 @@ $( e=> {
         }
         changeBackground(this);
     });
-    $("#tabs").tabs();
-    $("#tabs").removeClass('d-none');
+    
     $("#select_for_edit").change(e=>{
         var url = +$(e.target).val(); 
         console.log(url);
