@@ -1,6 +1,6 @@
 from wtforms.form import FormMeta
 from pcpc import app
-from flask import render_template, request, flash, redirect, url_for, jsonify
+from flask import render_template, request, flash, redirect, url_for, jsonify, abort
 import json, os
 from pcpc.models import User, Team, ContactUs, Announcement
 from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm, AnnounceForm
@@ -24,6 +24,11 @@ def home():
     }
     return render_template("home.html", **data)
 
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('404.html', title = '404'), 404
+
+   
 @app.route('/admin/<menu_name>/edit/<param1>')
 @app.route('/admin/<menu_name>', methods=["POST", "GET"])
 @app.route('/admin/')
@@ -32,9 +37,9 @@ def admin(menu_name=None, param1=None):
     if not menu_name: return redirect('/admin/announcements')
     admin_template_path = os.path.join(app.instance_path.replace('instance', app.config['APP_NAME']), 'templates', 'admin')
     if not os.path.isfile(os.path.join(admin_template_path, menu_name+'.html')):
-        return page_not_found(404)
+        abort(404)
     if not current_user.is_admin: 
-        return forbidden403(403)
+        abort(403)
     data = {
         "teams": Team.query.all(),
         "contacts": ContactUs.query.all(),

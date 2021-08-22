@@ -4,7 +4,7 @@
         <form class="ms-auto" action="/delete/announcement/{{ announcement.id  }}" method="POST">
             <button type="submit" class="btn btn-sm  btn-danger"> حذف </button>
         </form>
-        <form class="ms-2" action="{{ announcement.id  }}" method="POST">
+        <form class="ms-2" action="/admin/announcements/edit/{{ announcement.id  }}#edit_announcements" method="GET">
             <button type="submit" class="btn btn-sm  btn-primary"> ویرایش </button>
         </form>
     </div>

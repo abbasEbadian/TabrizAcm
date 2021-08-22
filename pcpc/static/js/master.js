@@ -21,7 +21,8 @@ toastr.options = {
 
 $( e=> {
     //Profile
-    
+    if(window.location.hash)
+        $(window.location.hash).click();
     $("div#avatar_div .help_text").click(e=>{
         $("input#avatar_input").click();
     });
@@ -35,9 +36,11 @@ $( e=> {
     $("#tabs").tabs();
     $("#tabs").removeClass('d-none');
     $("#select_for_edit").change(e=>{
-        var url = $(this).val(); 
-          if (url) { // require a URL
-              window.location = window.location.pathname + '/edit/' + url; // redirect
+        var url = +$(e.target).val(); 
+        console.log(url);
+        
+          if (url && url >0) { // require a URL
+              window.location = `/admin/announcements/edit/${url}#edit_announcements`;
           }
           return false;
     });
