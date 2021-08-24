@@ -1,0 +1,30 @@
+<section class="annotations p-5" dir="ltr">
+    <div id="primary-slider">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {% for ann in announcements  %}
+                    <li class="splide__slide">
+                            <div class="d-flex border">
+                                <div class="col-7 position-relative">
+                                    <img src="{{ url_for('static', filename=ann.image)}}">
+                                    <span class="position-absolute start-0 bottom-0 p-3 fs-3 text-white w-100 text-start" style="background-color: #0009"> {{ ann.title }}</span>
+                                </div>
+                                <div class="col-5 p-4  text-start">{{ ann.html | safe}}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+    <div id="secondary-slider" class="splide py-4">
+        <div class="splide__track">
+            <ul class="splide__list">
+                {% for ann in announcements  %}
+                    <li class="splide__slide">
+                        <img src="{{ url_for('static', filename=ann.image)}}">
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>

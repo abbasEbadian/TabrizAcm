@@ -8,9 +8,17 @@
     src: url('../fonts/iranyekanweblight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
          url('../fonts/iranyekanweblight.ttf') format('truetype');
 }
-
+@font-face {
+    font-family: IRANYekanBold;
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/iranyekanwebbold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+         url('../fonts/iranyekanwebbold.ttf') format('truetype'),
+         url('../fonts/iranyekanwebbold.eot') format('opentype');
+}
 *{
     font-family: IRANYekan;
+    scroll-behavior: smooth;
 }
 a{
     text-decoration: none;
@@ -111,6 +119,11 @@ td, th{
     color: var(--main);
     z-index: 4;
     font-size: 26px;
+}
+
+.sidebar {
+    position: fixed;
+    right: 0;
 }
 /* **************** */
 /*      Login       */
@@ -323,47 +336,9 @@ nav.white_theme a{
     #home_page  .splide__slide img {
         width : 100%;
         height: auto;
+        max-height: 500px;
     }
-    #home_page #archive img{
-        max-height: 100%;
-    }
-    #home_page #archive a#problemset_1{
-        background-color: #B42E1C;
-        color: white;
-    }
-    #home_page #archive a#problemset_2{
-        background-color: #FCCA1F;
-        color: white;
-    }
-    #home_page #archive a#problemset_3{
-        background-color: #5385C1;
-        color: white;
-    }
-    #home_page #archive a#problemset_4{
-        background-color: #093155;
-        color: white;
-    }
-    #home_page #archive a#problemset_all{
-        background-color: #093155;
-        color: white;
-    }
-    #home_page #archive >div{
-        background-repeat: no-repeat;
-        background-size: contain;
-        border-left: 3px solid #ccc;
-    }
-    #home_page #archive a{
-        height: 52px;
-        margin: 6px 0;
-        max-width: 300px;
-        z-index: 1;
-        line-height: 33px;
-        opacity: 0.9;
-        transition: 0.2s;
-    }
-    #home_page #archive a:hover{
-        opacity: 1;
-    }
+
     #home_page  .prev_archive .overlay{
         background-color: #000;
     }
@@ -473,6 +448,250 @@ nav.white_theme a{
         background-size: cover;
         min-height: 250px;
     }
+
+
+    /* TIMER */
+       
+        .timer_container {
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        .timer_container h1, .timer_container h3 {
+            text-align: center;
+            margin-top: 2em;
+            font-size: 1.3em;
+            color: #222222;
+        }
+        .timer_container h3{
+            font-size: 1.1em;
+            max-width: 90%;
+            margin: 32px auto 0;
+            line-height: 30px;
+        }
+        .timer_container  #timer {
+            color: #f6f4f3;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            margin-top: 25%;
+        }
+        .timer_container .days, .timer_container .hours, .timer_container .minutes, .timer_container .seconds {
+            display: inline-block;
+            padding: 10px 20px;
+            width: 120px;
+            border-radius: 5px;
+            font-family: IRANYekan;
+
+        }
+        .timer_container .days {
+            background: #ef2f3c;
+        }
+        .timer_container .hours {
+            background: #27bf40;
+            color: #183059;
+        }
+        .timer_container .minutes {
+            background: #276fbf;
+        }
+        .timer_container .seconds {
+            background: #fccf34;
+            color: #183059;
+        }
+        .timer_container .numbers {
+            font-family: IRANYekan;
+            color: #183059;
+            font-size: 4em;
+            font-weight: 900;
+        }
+        .timer_container .white.balloon {
+            position: absolute;
+            background: #27bf40;
+            height: 85px;
+            width: 75px;
+            left: 30%;
+            top: 2%;
+        }
+        .timer_container .white.balloon .triangle {
+            border-bottom: 14px solid #27bf40;
+        }
+        .timer_container .white.balloon .string {
+            background: #27bf40;
+            border: 1px solid #27bf40;
+        }
+        .timer_container .yellow.balloon {
+            position: absolute;
+            background: #fccf34;
+            height: 70px;
+            width: 75px;
+            left: 75%;
+            top: 7%;
+        }
+        .timer_container .yellow.balloon .triangle {
+            border-bottom: 14px solid #fccf34;
+        }
+        .timer_container .yellow.balloon .string {
+            background: #fccf34;
+            border: 1px solid #fccf34;
+        }
+        .timer_container .red.balloon {
+            position: absolute;
+            background: #ef2f3c;
+            left: 18%;
+            top: 9%;
+            height: 65px;
+            width: 70px;
+        }
+        .timer_container .red.balloon .triangle {
+            border-bottom: 14px solid #ef2f3c;
+        }
+        .timer_container .red.balloon .string {
+            background: #ef2f3c;
+            border: 1px solid #ef2f3c;
+        }
+        .timer_container .blue.balloon {
+            position: absolute;
+            background: #276fbf;
+            height: 80px;
+            width: 80px;
+            left: 60%;
+            top: 5%;
+        }
+        .timer_container .blue.balloon .triangle {
+            border-bottom: 14px solid #276fbf;
+        }
+        .timer_container .blue.balloon .string {
+            background: #276fbf;
+            border: 1px solid #276fbf;
+        }
+        .timer_container .balloon {
+            box-shadow: 0 0 10px -4px #000;
+            border-radius: 50% 50% 50% 50%/ 40% 40% 60% 60%;
+            z-index: 2;
+        }
+        .timer_container  .eye {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            top: 40%;
+            left: 22%;
+            background: #000;
+            border-radius: 50%;
+        }
+        .timer_container .eye:after {
+            content: '';
+            left: 35px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #000;
+            position: absolute;
+        }
+        .timer_container .mouth {
+            position: absolute;
+            top: 45%;
+            left: 43%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+        .timer_container .happy {
+            border: 2px solid;
+            border-color: transparent #000 #000 transparent;
+            transform: rotate(45deg);
+        }
+        .timer_container .triangle {
+            position: absolute;
+            left: 40%;
+            bottom: -10%;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+        }
+        .timer_container .string {
+            position: absolute;
+            height: 70px;
+            width: 1px;
+            left: 48%;
+            top: 100%;
+            z-index: -1;
+        }
+ 
+        
+        
+        /* Download buttons */
+        #home_page #archive img{
+            max-height: 100%;
+        }
+        #home_page #archive a#problemset_1{
+            background-color: #B42E1C;
+            color: white;
+        }
+        #home_page #archive a#problemset_2{
+            background-color: #FCCA1F;
+            color: white;
+        }
+        #home_page #archive a#problemset_3{
+            background-color: #5385C1;
+            color: white;
+        }
+        #home_page #archive a#problemset_4{
+            background-color: #093155;
+            color: white;
+        }
+        #home_page #archive a#problemset_all{
+            background-color: #093155;
+            color: white;
+        }
+        #home_page #archive >div{
+            background-repeat: no-repeat;
+            background-size: contain;
+            /* border-left: 3px solid #ccc; */
+        }
+        #home_page #archive a{
+            height: 52px;
+            margin: 6px 0;
+            width: 350px;
+            z-index: 1;
+            line-height: 37px;
+            opacity: 0.9;
+            color:#fff;
+            transition:all 0.4s ease;
+            position: relative;
+            text-align: start;
+        }
+        #home_page #archive a:before{
+            content:"\f29b";
+            font-family:bootstrap-icons;
+            position:absolute;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            font-size:28px;
+            border-radius:0 20px 0 0;
+            color:#000;
+            background-color:#fff;
+            opacity:0.3;
+            padding:10px 13px;
+            top:0;
+            left:0
+        }
+        #home_page #archive a:hover{
+            opacity: 1;
+        }
+        a:link{text-decoration:none}
+        .vn-blue a:hover{
+            background:#2c3e50
+        }
+        #home_page section .svg-container{
+            text-align: end;
+        }
+        #home_page section svg{
+            width: 75%;
+        }   
+
 @media (max-width: 768px){
     div#login_page #login_form_container{
         display: flex;

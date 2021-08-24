@@ -21,6 +21,7 @@ def home():
         "title":"PCPC - Tabriz",
         "navbar_logo_color": "white",
         "navbar_text_color": "white",
+        "announcements": Announcement.query.all()
     }
     return render_template("home.html", **data)
 
@@ -54,10 +55,12 @@ def admin(menu_name=None, param1=None):
             title = form.title.data
             image = form.image.data
             html = form.html.data
-            announcement_pics.save(image)
+            print(title, image , html)
             if not param1:
                 a = Announcement(title=title, html=html)
-                a.image = os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
+                if image:
+                    announcement_pics.save(image)
+                    a.image = os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
                 flash("با موفقیت ایجاد شد.", "info")
                 db.session.add(a)
             else:
@@ -65,8 +68,10 @@ def admin(menu_name=None, param1=None):
                 if ann:
                     ann.title = title
                     ann.html = html
-                    announcement_pics.save(image)
-                    ann.image =os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
+                    print(image)
+                    if image:
+                        announcement_pics.save(image)
+                        ann.image =os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
                     flash("با موفقیت تغییر یافت", "info")
             db.session.commit()
         if param1:

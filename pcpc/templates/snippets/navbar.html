@@ -1,8 +1,8 @@
 <nav class="nav justify-content-between align-items-center  px-md-5 px-sm-3 {{ navbar_text_color == 'white' and 'white_theme' }}">
     {% include 'snippets/log_status.html' %}
     <a class="ms-5 text-white" href="/">صفحه اصلی</a>
-    <a class="ms-5 text-white" href="/contact-us">ارتباط با ما</a>
-    <a class="me-auto ms-5 text-white" href="/about-us">درباره ما</a>
+    <a class="ms-5 me-auto text-white" href="/contact-us">ارتباط با ما</a>
+    <!-- <a class="me-auto ms-5 text-white" href="/about-us">درباره ما</a> -->
     {% if navbar_logo_color == 'white' %}
         {% include 'snippets/double-logo-white.html' %}
     {% else %}

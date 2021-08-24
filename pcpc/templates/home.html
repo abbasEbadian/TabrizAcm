@@ -20,82 +20,23 @@
             <div class="left_line h-100" ></div>
         </div>
     </header>
-    <div class="annotations p-5" dir="ltr">
-        <div id="primary-slider">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide">
-                            <div class="d-flex">
-                                <div class="col-7 ">
-                                    <img src="{{ url_for('static', filename='img/announcements/1.jpg')}}">
-                                </div>
-                                <div class="col-5 p-4 border text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
+    {#
+        {% include 'home/annotations_slider.html' %}
+    #}
+    
+    
+    {% include 'home/timer.html' %}
 
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div class="d-flex">
-                                <div class="col-7 ">
-                                    <img src="{{ url_for('static', filename='img/announcements/2.jpg')}}">
-                                </div>
-                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div class="d-flex">
-                                <div class="col-7 ">
-                                    <img src="{{ url_for('static', filename='img/announcements/3.jpg')}}">
-                                </div>
-                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
-                            </div>
+    {% include 'home/contest_place.html' %}
 
-                        </li>
-                        <li class="splide__slide">
-                            <div class="d-flex">
-                                <div class="col-7 ">
-                                    <img src="{{ url_for('static', filename='img/announcements/4.jpg')}}">
-                                </div>
-                                <div class="col-5 p-4 border">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis illum libero, esse quaerat illo commodi quas saepe rerum sapiente enim delectus laudantium iste? Quod perferendis asperiores corporis nam, blanditiis atque?</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-        </div>
-        <div id="secondary-slider" class="splide py-4">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ url_for('static', filename='img/announcements/1.jpg')}}">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ url_for('static', filename='img/announcements/2.jpg')}}">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ url_for('static', filename='img/announcements/3.jpg')}}">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ url_for('static', filename='img/announcements/4.jpg')}}">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="problemset_archive py-5 my-5">
-        <article id="archive" class="bg-white position-relative my-2 p-4 ">
-            <h4 class="mb-2 pb-2">آرشیو سوالات ادوار گذشته</h4>
-            <div class="right d-flex flex-column"  style="background-image: url({{ url_for('static', filename='img/archive.png')}})">
-                <a class="btn get_problemset" id="problemset_all" href="#">تمام دوره ها</a>
-                <a class="btn get_problemset" id="problemset_1" href="#">دوره اول - بابل</a>
-                <a class="btn get_problemset" id="problemset_2" href="#">دوره دوم - مشهد</a>
-                <a class="btn get_problemset" id="problemset_3" href="#">دوره سوم - همدان</a>
-                <a class="btn get_problemset" id="problemset_4" href="#">دوره چهارم - تهران</a>
-            </div>
+    {% include 'home/langs.html' %}
+    
+    {% include 'home/rules.html' %}
 
-            <div class="left">
-                <!-- <h3>آرشیو سوالات سال های گذشته</h3> -->
-            </div>
-        </article>
-    </div>
+    
+    {% include 'home/problemset_archive.html' %}
+
+    
     <div class="prev_archive">
         <article>
             <div class="overlayed position-relative babol d-flex justify-content-end ">
