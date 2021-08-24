@@ -2,6 +2,9 @@ Array.prototype.last = (array)=>{
     if (array.length == 0) return none;
     return array[array.length-1];
 }
+$.fn.extend({
+    E : $(this).length > 0
+})
 toastr.options = {
     "closeButton": true,
     "newestOnTop": false,
@@ -23,16 +26,6 @@ $( e=> {
     //Profile
     if(window.location.hash)
         $(window.location.hash).click();
-    $("div#avatar_div .help_text").click(e=>{
-        $("input#avatar_input").click();
-    });
-    $("input#avatar_input").off().change(function(){
-        var length=this.files.length;
-        if(!length){
-            return false;
-        }
-        changeBackground(this);
-    });
     
     $("#select_for_edit").change(e=>{
         var url = +$(e.target).val(); 
@@ -84,39 +77,102 @@ $( e=> {
         }); 
         primarySlider.sync( secondarySlider ).mount();
     }
-    $('div.image_preview').off().click((e)=>{
-        $(e.target).siblings('input').click();
-    });
-    $("input.image_input").off().change(function(){
-        var length=this.files.length;
-        if(!length){
-            return false;
+   
+    // $("input.image_input").off().change(function(){
+       
+    // });
+    $.widget("admin.announcement", {
+        options:{
+            _has_image: false,
+        },
+        _preveiew: undefined,
+        _input:undefined,
+        _title: undefined,
+        _html: undefined,
+        _helpText: undefined,
+        _create: function () {
+            const self = this;  
+                      
+            self._preveiew = $(self.element).find(".image_preview");
+            self._input  = $(self.element).find(".image_input");
+            self._title = $(self.element).find("#title");
+            self._html = $(self.element).find("textarea");
+            self._helpText  = $(self.element).find(".help_text");
+
+            self.listeners(self);
+            if(self.options._has_image) self.change(self);
+        },
+        listeners: self=>{
+            self._helpText.on("click", {self}, self.open_file);
+            self._preveiew.on("click", {self}, self.open_file);
+            self._input.on("change",{self}, self.input_change);
+            $(self.element).find("button[type=submit]").on("click", e=>{
+                $(self.element).submit()
+            });
+        },
+        open_file: e=>{
+            const self = e.data.self;
+            self._input.click()
+        },
+        input_change:(e)=>{
+            
+            const self = e.data.self;
+            
+            var length= e.target.files.length;
+            if(!length){
+                return false;
+            }
+            self.changeBackground(self, e.target.files[0]);
+        },
+        changeBackground: (self, file)=>{
+            var imagefile = file.type;
+            var match= ["image/jpeg","image/png","image/jpg"];
+                  if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+                        alert("Invalid File Extension");
+                  }else{
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(file);
+                  }
+            function imageIsLoaded(e) {
+                self._preveiew.css({ 'background-image': "url(" + e.target.result + ")" });
+                self.change(self);
+            }     
+        },
+        change: self=>{
+            $(self.element).find(".placeholder").addClass('d-none');
+            self._helpText.removeClass('d-none');
+            self.options._has_image = true;
         }
-        changeBackground(this);
+
     });
+    if ($("#edit_announcement_form").E)
+        $("#edit_announcement_form").announcement({_has_image: true});
+    if ($("#new_announcement_form").E)
+        $("#new_announcement_form").announcement();
     $('.summernote').summernote({
         height: 250
     });
     // $('#summernote').summernote();
 });
-function changeBackground(img){
-    let preview_div = $(img).siblings("div.image_preview");
-    var file = img.files[0];
-    var imagefile = file.type;
-    var match= ["image/jpeg","image/png","image/jpg"];
-          if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
-                alert("Invalid File Extension");
-          }else{
-                var reader = new FileReader();
-                reader.onload = imageIsLoaded;
-                reader.readAsDataURL(img.files[0]);
-          }
-    function imageIsLoaded(e) {
-        preview_div.find(".placeholder").addClass('d-none');
-        preview_div.find(".help_text").removeClass('d-none');
-        preview_div.css({ 'background-image': "url(" + e.target.result + ")" });
-    }     
-}
+// function changeBackground(img){
+//     let preview_div = $(img).siblings(".image_preview");    
+//     var file = img.files[0];
+//     var imagefile = file.type;
+//     var match= ["image/jpeg","image/png","image/jpg"];
+//           if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+//                 alert("Invalid File Extension");
+//           }else{
+//                 var reader = new FileReader();
+//                 reader.onload = imageIsLoaded;
+//                 reader.readAsDataURL(img.files[0]);
+//           }
+//     function imageIsLoaded(e) {
+//         preview_div.find(".placeholder").addClass('d-none');
+//         preview_div.find(".help_text").removeClass('d-none');
+//         preview_div.css({ 'background-image': "url(" + e.target.result + ")" });
+//     }     
+// }
 
 function toggle_sidebar(e) {
     e.stopPropagation();

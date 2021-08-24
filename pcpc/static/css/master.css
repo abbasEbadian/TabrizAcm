@@ -315,7 +315,7 @@ nav.white_theme a{
         margin-top: 4px;
         padding-top: 8px;
     }
-    #home_page header .aligned_content button{
+    #home_page header .aligned_content a.btn{
         background-color: #456C8C;
         width: 215px;
         margin: 10px 0;
@@ -470,7 +470,7 @@ nav.white_theme a{
     .announcement .image{
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain;
+        background-size: cover;
         min-height: 250px;
     }
 @media (max-width: 768px){

@@ -22,8 +22,10 @@ $(e=>{
     }
     $("#tabs").tabs();
     $("#tabs").removeClass('d-none');
-    init_table();
 
+    if($("#admin-teams").length >0) init_table();
+
+   
     
 });
 

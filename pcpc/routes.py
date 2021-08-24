@@ -29,7 +29,7 @@ def page_not_found(error):
    return render_template('404.html', title = '404'), 404
 
    
-@app.route('/admin/<menu_name>/edit/<param1>')
+@app.route('/admin/<menu_name>/edit/<param1>',  methods=["POST", "GET"])
 @app.route('/admin/<menu_name>', methods=["POST", "GET"])
 @app.route('/admin/')
 @login_required
@@ -57,23 +57,22 @@ def admin(menu_name=None, param1=None):
             announcement_pics.save(image)
             if not param1:
                 a = Announcement(title=title, html=html)
-                a.image = "uploads/announcement_pics/" + image.filename
+                a.image = os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
                 flash("با موفقیت ایجاد شد.", "info")
                 db.session.add(a)
             else:
-                ann = Announcement.query.get(int(param1))
+                ann = Announcement.query.filter_by(id=int(param1)).first()
                 if ann:
                     ann.title = title
                     ann.html = html
-                    ann.image = image
-                    
+                    announcement_pics.save(image)
+                    ann.image =os.path.join(app.config.get("UPLOADED_ANNOUNCEMENTPICS_DEST") + image.filename)
+                    flash("با موفقیت تغییر یافت", "info")
             db.session.commit()
         if param1:
             ann = Announcement.query.get(int(param1))
             data["edit_ann"] = ann
 
-    if menu_name == 'teams':
-        data["form"] = AnnounceForm()
     data["announcements"] =  Announcement.query.all()
     return render_template(f"/admin/{menu_name}.html", **data)
 

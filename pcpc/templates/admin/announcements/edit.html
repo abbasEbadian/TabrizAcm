@@ -12,8 +12,40 @@
         </select>
     {% endif %}
     {% if edit_ann %}
-        {% with ann = edit_ann %}
-            {% include "/admin/announcements/new.html" %}
-        {% endwith  %}
+        {% set f=form.title.process_data(edit_ann.title )%}
+        {% set f=form.image.process_data(edit_ann.image) %}
+        {% set f=form.html.process_data(edit_ann.html) %}
+    <form action="/admin/announcements/edit/{{edit_ann.id}}" class="flex-wrap d-flex" id="edit_announcement_form" method="POST" >
+        {{ form and form.hidden_tag()}}
+        <div class="col-12 col-md-8 pe-2">
+
+            {% if form.title.errors %}
+            {{ form.title(class="title form-control is-invalid"  ) }}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+            {{ form.title(class="title form-control"  ) }}
+
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-4 ps-2">
+            <div class="image_preview" style="background-image: url({{ edit_ann and url_for('static', filename=edit_ann.image) or ''  }})">
+                <img class="placeholder_image placeholder" src="{{ url_for('static', filename='img/camera.png' )}}" /> 
+                <small class='placeholder_text placeholder'>افزودن تصویر</small>
+                <small class='help_text d-none'>برای تغییر کلیک کنید.</small>
+            </div>
+            
+            {{ form.image(class="d-none image_input", id="avatar_input" , accept=".png, .jpg, .jpeg") }}
+        </div>
+        <div class="col-12 ">
+                {{ form.html(class="summernote") }}
+        </div>
+        <div class="col-12 py-3 justify-content-end d-flex">
+            <button class="btn btn-primary" type="submit">ثبت تغییرات</button>
+        </div>
+    </form>
     {% endif %}
 </article>

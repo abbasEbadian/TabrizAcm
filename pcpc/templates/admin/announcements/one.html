@@ -11,7 +11,7 @@
     <div class="col-12 col-md-6 content">
         <div>{{ announcement.html | safe }}</div>
     </div>
-    <div class="col-12 col-md-6 image">
+    <div class="col-12 col-md-6 image border">
         <div class="image" style="background-image: url({{ url_for('static', filename=announcement.image or 'img/camera.png'  ) }})"></div>
     </div>
 </div>

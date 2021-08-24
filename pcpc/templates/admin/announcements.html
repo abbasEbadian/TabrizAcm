@@ -6,7 +6,12 @@
             {% include '/admin/admin_sidebar.html' %}
             {% endwith %}
             <div class="col-9 content ms-auto pt-3">
-                <h4 class="my-2 pb-2">اطلاعیه ها</h4>
+                <h4 class="my-2 pb-2 mb-5">اطلاعیه ها</h4>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for c,m in messages%}
+                        <div class="alert alert-{{c}}"> {{ m }}</div>
+                    {% endfor %}
+                {% endwith %}
                 <section id="tabs" class="d-none">
                     <ul>
                         <li><a href="#announcements">همه </a></li>

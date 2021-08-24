@@ -74,5 +74,5 @@ class ContactForm(FlaskForm):
 
 class AnnounceForm(FlaskForm):
     title = StringField('', validators=[DataRequired(message=empty_message)], render_kw={"autocomplete": "off", "placeholder": "عنوان اطلاعیه"})
-    image = FileField('', validators=[DataRequired(message=empty_message)], render_kw={"autocomplete": "off"})
+    image = FileField('', render_kw={"autocomplete": "off"})
     html = TextAreaField(u'متن', [DataRequired(message=empty_message), length(max=2000)], render_kw={"placeholder": "متن اطلاعیه"})

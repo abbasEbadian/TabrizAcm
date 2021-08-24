@@ -12,10 +12,10 @@
         <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-6 col-lg-5 p-4 px-md-5 ms-md-5">
             {{ form.hidden_tag() }}
             <div class="d-flex justify-content-between">
-                <div id="avatar_div" style="background-image: url({{ 'static/'+current_user.image }});" >
+                <div id="avatar_div" class="image_preview" style="background-image: url({{ 'static/'+current_user.image }});" >
                     <small class='help_text'>تغییر</small>
                 </div>
-                <input type="file" name="image" id="avatar_input" class="d-none" accept=".png, .jpg, .jpeg">
+                <input type="file" name="image" id="avatar_input" class="d-none image_input" accept=".png, .jpg, .jpeg">
                 <div class="team_info d-flex flex-column justify-content-center align-items-left flex-grow-1 ms-4">
                     <h4 class="team_name border-bottom pb-2 mb-2 text-white text-end"> {{ current_user.team.name }} </h4>
                     <h5 class="team_city text-white text-start"> از {{ current_user.team.city }} </h5>
