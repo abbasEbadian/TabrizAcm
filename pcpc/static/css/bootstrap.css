@@ -7337,7 +7337,9 @@ textarea.form-control-lg {
 .text-main {
   color: var(--bs-main) !important;
 }
-
+.text-main *{
+  color: var(--bs-main) !important;
+}
 .text-secondary {
   color: #6c757d !important;
 }

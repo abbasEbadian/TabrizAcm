@@ -151,8 +151,6 @@ def profile():
         "form": form,
         "title": "PCPC - Profile",
         "navbar_theme": "white_theme",
-        "navbar_logo_color": "white",
-        "navbar_text_color": "white",
     }
     return render_template('profile.html', **data)
 

@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 {% block main %}
-<div id="profile_page">
-    <header class="position-relative d-grid align-items-bottom " style="background-image: url({{ url_for('static', filename='img/profile-page-bg.jpg')}});">
-        <div class="overlay position-absolute top-0 bottom-0 start-0 end-0" style="background: #0007;z-index: 0;">
-
-        </div>
+<div id="profile_page" class="d-flex align-items-center">
+    <div class="position-relative d-grid align-items-bottom  col-12 col-md-6 pt-5" >
         {% set p = form.email.process_data(current_user.email) %}
         {% set p = form.name.process_data(current_user.name) %}
         {% set p = form.identifier.process_data(current_user.identifier) %}
         {% set p = form.phone.process_data(current_user.phone) %}
-        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-6 col-lg-5 p-4 px-md-5 ms-md-5">
+        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-8 col-a dsmdp-4 px-md-5 ms-md-5">
             {{ form.hidden_tag() }}
             <div class="d-flex justify-content-between">
                 <div id="avatar_div" class="image_preview" style="background-image: url({{ 'static/'+current_user.image }});" >
@@ -132,6 +129,9 @@
                 {{ form.submit(class="btn btn-simple btn-lg fs-6 border-white text-white border ms-auto")}}
             </div>
         </form>
-    </header>
+    </div>
+    <div class="d-none d-md-block col-6 px-5 svg-container text-center">
+        {% include 'iso/profile.svg' %}
+    </div>   
 </div>
 {% endblock main %}

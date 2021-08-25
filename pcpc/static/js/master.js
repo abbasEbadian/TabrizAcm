@@ -158,7 +158,7 @@ $( e=> {
         height: 250
     });
     // $('#summernote').summernote();
-
+    if ($("#home_page").length > 0)
     init_timer();
 });
 // function changeBackground(img){

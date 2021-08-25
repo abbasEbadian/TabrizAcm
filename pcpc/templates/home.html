@@ -20,75 +20,22 @@
             <div class="left_line h-100" ></div>
         </div>
     </header>
-    {#
-        {% include 'home/annotations_slider.html' %}
-    #}
+        {#
+            {% include 'home/annotations_slider.html' %}
+        #}
+        
+        
+        {% include 'home/timer.html' %}
     
+        {% include 'home/contest_place.html' %}
     
-    {% include 'home/timer.html' %}
-
-    {% include 'home/contest_place.html' %}
-
-    {% include 'home/langs.html' %}
+        {% include 'home/langs.html' %}
+        
+        {% include 'home/rules.html' %}
     
-    {% include 'home/rules.html' %}
-
-    
-    {% include 'home/problemset_archive.html' %}
-
-    
-    <div class="prev_archive">
-        <article>
-            <div class="overlayed position-relative babol d-flex justify-content-end ">
-                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/tehran.jpg' ) }})"></div>
-                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
-                <div class="c position-relative align-items-start px-5">
-                    <h4>PCPC به میزبانی بابل</h4>
-                    <h5></h5>
-                    <a class="btn text-white" href="#">
-                        مشاهده اطلاعیه ها
-                        <i class="bi-chevron-left"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="overlayed mashhad position-relative">
-                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/mashhad.jpg' ) }})"></div>
-                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
-                <div class="c  position-relative px-5">
-                    <h4>PCPC به میزبانی مشهد</h4>
-                    <h5></h5>
-                    <a class="btn text-white" href="#">
-                        مشاهده اطلاعیه ها
-                        <i class="bi-chevron-left"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="overlayed hamedan position-relative  d-flex justify-content-end">
-                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/hamedan.jpg' ) }})"></div>
-                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
-                <div class="c position-relative px-5">
-                    <h4>PCPC به میزبانی همدان</h4>
-                    <h5></h5>
-                    <a class="btn text-white" href="#">
-                        مشاهده اطلاعیه ها
-                        <i class="bi-chevron-left"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="overlayed tehran position-relative">
-                <div class="image position-absolute" style="background-image: url({{ url_for('static', filename='img/tehran.jpg' ) }})"></div>
-                <div class="overlay w-100 d-none d-md-block ms-auto h-100 position-absolute end-0"></div>
-                <div class="c position-relative  px-5">
-                    <h4>PCPC به میزبانی تهران</h4>
-                    <h5></h5>
-                    <a class="btn text-white"  href="#">
-                        مشاهده اطلاعیه ها
-                        <i class="bi-chevron-left"></i>
-                    </a>
-                </div>
-            </div>
-        </article>
-    </div>
-    
+        
+        {% include 'home/problemset_archive.html' %}
+        
+        {% include 'home/prevs.html' %}
 </div>
 {% endblock main %}

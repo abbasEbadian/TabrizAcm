@@ -37,6 +37,10 @@ a{
 }
 body, html{
     height: 100%;
+    transition: 0.2s;
+}
+#home_page{
+    overflow-x: hidden;
 }
 body.gray_bg{
     background-color: #e8e8e8; 
@@ -217,18 +221,16 @@ td, th{
 /* ************** */
 /*  Profile Style */
 /* ************** */
+#profile_page{
+    padding-top: 128px;
+}
 #profile_page form{
     background: #011a28dd;
     border-radius: 16px;
     height: max-content;
     box-shadow: 0 0 12px -2px #000;
 }
-#profile_page header{
-    height: 100vh;
-    background-size: cover;
-    padding-top: 15%; 
-    padding-right: 128px;
-}
+
 #profile_page #avatar_div .help_text{
     bottom: 0;
     background: #2228;
@@ -279,6 +281,11 @@ nav{
 nav.white_theme #log_status *,
 nav.white_theme a{
     color: white !important;
+    font-weight: bolder;
+}
+nav.dark-theme #log_status *,
+nav.dark-theme a{
+    color: var(--main) !important;
     font-weight: bolder;
 }
 #logo_container{
@@ -344,7 +351,7 @@ nav.white_theme a{
     }
 
     .prev_archive .overlayed{
-        height:200px;
+        height:250px;
     }
     .prev_archive .overlayed .c a{
         width: 180px;
@@ -352,6 +359,8 @@ nav.white_theme a{
         padding: 6px 4px 6px 10px;
         position: relative;
         opacity: 0.9;
+        font-size: 14px;
+        box-shadow: 0 0 18px -8px #000;
     }
     .prev_archive .overlayed .c a{
         opacity: 1;
@@ -376,7 +385,7 @@ nav.white_theme a{
         width: max-content;
     }
     .prev_archive .overlayed > div.image{
-        height: 200px;
+        height: 250px;
         width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -685,10 +694,10 @@ nav.white_theme a{
         .vn-blue a:hover{
             background:#2c3e50
         }
-        #home_page section .svg-container{
+        .svg-container{
             text-align: end;
         }
-        #home_page section svg{
+        .svg-container svg{
             width: 75%;
         }   
 
