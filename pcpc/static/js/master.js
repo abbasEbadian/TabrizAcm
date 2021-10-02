@@ -40,6 +40,7 @@ $( e=> {
           }
           return false;
     });
+    const is_dark = $("nav.nav").hasClass("dark-theme");
     $(window).scroll(function() {
         var scrollTop = $(this).scrollTop();
         var max_pad = 50;
@@ -53,7 +54,9 @@ $( e=> {
                 return `${Math.max(max_pad - scrollTop, 5)}px`;
             },
             "transition": "0.22s all",
-        });
+        })
+        .toggleClass("dark-theme", is_dark && scrollTop < 50)
+        .toggleClass("white_theme", !is_dark || scrollTop > 50) ;
     }).scroll();
     if($( '#secondary-slider' ).length > 0){
         var secondarySlider = new Splide( '#secondary-slider', {

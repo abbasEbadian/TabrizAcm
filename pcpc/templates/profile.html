@@ -6,124 +6,112 @@
         {% set p = form.name.process_data(current_user.name) %}
         {% set p = form.identifier.process_data(current_user.identifier) %}
         {% set p = form.phone.process_data(current_user.phone) %}
-        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-8 col-a dsmdp-4 px-md-5 ms-md-5">
+        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-8 p-2 ps-md-5 ms-md-5">
             {{ form.hidden_tag() }}
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between pb-5">
                 <div id="avatar_div" class="image_preview" style="background-image: url({{ 'static/'+current_user.image }});" >
                     <small class='help_text'>تغییر</small>
                 </div>
                 <input type="file" name="image" id="avatar_input" class="d-none image_input" accept=".png, .jpg, .jpeg">
                 <div class="team_info d-flex flex-column justify-content-center align-items-left flex-grow-1 ms-4">
-                    <h4 class="team_name border-bottom pb-2 mb-2 text-white text-end"> {{ current_user.team.name }} </h4>
-                    <h5 class="team_city text-white text-start"> از {{ current_user.team.city }} </h5>
+                    <h4 class="team_name border-bottom pb-2 mb-2 text-main text-end"> {{ current_user.team.name }} </h4>
+                    <h5 class="team_city text-main text-start"> از {{ current_user.team.city }} </h5>
                 </div>
             </div>
             <div class="form-group mb-4">
-                {{ form.name.label(class="form-control-label pb-2") }}
-                {%if form.name.errors %}
-                    <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-person-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                        </div>
-                        {{ form.name(class="form-control   ") }}
-
+                {% if form.name.errors %}
+                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                        {{ form.name(class="form-control form-control-lg pe-5") }}
+                        {{ form.name.label(class="form-control-label pb-2 ") }}
+                        <i class="bi-person-fill text-danger"></i>
                     </div>
-                    <div class="invalid-feedback ">
+                    
+                    <div class="invalid-feedback">
                         {% for error in form.name.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-person-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                    </div>
-                    {{ form.name(class="form-control  ") }}
+                <div class="input-group mb-3  bg-none new_design_inputs">
+                    {{ form.name(class="form-control form-control-lg pe-5") }}
+                    {{ form.name.label(class="form-control-label pb-2") }}
+                    <i class="bi-person-fill"></i>
                 </div>
                 {%endif%}
             </div>
 
 
             <div class="form-group mb-4">
-                {{ form.email.label(class="form-control-label pb-2") }}
-                {%if form.email.errors %}
-                    <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-envelope-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                        </div>
-                        {{ form.email(class="form-control  ") }}
-
+                {% if form.email.errors %}
+                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                        {{ form.email(class="form-control form-control-lg pe-5") }}
+                        {{ form.email.label(class="form-control-label pb-2 ") }}
+                        <i class="bi-envelope-fill text-danger"></i>
                     </div>
-                    <div class="invalid-feedback ">
+                    
+                    <div class="invalid-feedback">
                         {% for error in form.email.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-envelope-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                    </div>
-                    {{ form.email(class="form-control  ") }}
+                <div class="input-group mb-3  bg-none new_design_inputs">
+                    {{ form.email(class="form-control form-control-lg pe-5") }}
+                    {{ form.email.label(class="form-control-label pb-2") }}
+                    <i class="bi-envelope-fill"></i>
                 </div>
                 {%endif%}
             </div>
 
 
             <div class="form-group mb-4">
-                {{ form.phone.label(class="form-control-label pb-2") }}
-                {%if form.phone.errors %}
-                    <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-phone-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                        </div>
-                        {{ form.phone(class="form-control  ") }}
-
+                {% if form.phone.errors %}
+                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                        {{ form.phone(class="form-control form-control-lg pe-5") }}
+                        {{ form.phone.label(class="form-control-label pb-2 ") }}
+                        <i class="bi-phone-fill text-danger"></i>
                     </div>
-                    <div class="invalid-feedback ">
+                    
+                    <div class="invalid-feedback">
                         {% for error in form.phone.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-phone-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                    </div>
-                    {{ form.phone(class="form-control  ") }}
+                <div class="input-group mb-3  bg-none new_design_inputs">
+                    {{ form.phone(class="form-control form-control-lg pe-5") }}
+                    {{ form.phone.label(class="form-control-label pb-2") }}
+                    <i class="bi-phone-fill"></i>
                 </div>
                 {%endif%}
             </div>
 
 
             <div class="form-group mb-4">
-                {{ form.identifier.label(class="form-control-label pb-2") }}
                 {% if form.identifier.errors %}
-                    <div class="input-group mb-3 iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-person-badge-fill h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                        </div>
-                        {{ form.identifier(class="form-control   is-invalid") }}
-
+                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                        {{ form.identifier(class="form-control form-control-lg pe-5") }}
+                        {{ form.identifier.label(class="form-control-label pb-2 ") }}
+                        <i class="bi-person-badge-fill text-danger"></i>
                     </div>
-                    <div class="invalid-feedback ">
+                    
+                    <div class="invalid-feedback">
                         {% for error in form.identifier.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3 iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-person-badge-fill  h-100 fs-5 text-black-50 bg-white" id="basic-addon1"></span>
-                    </div>
-                    {{ form.identifier(class="form-control  disabled") }}
+                <div class="input-group mb-3  bg-none new_design_inputs">
+                    {{ form.identifier(class="form-control form-control-lg pe-5") }}
+                    {{ form.identifier.label(class="form-control-label pb-2") }}
+                    <i class="bi-person-badge-fill"></i>
                 </div>
                 {%endif%}
             </div>
             <div class="form-group  d-flex justify-content-center align-items-center">
                 {% with messages = get_flashed_messages() %}
                     {% for m in messages%}
-                        <span class="text-white">{{ m }}</span>
+                        <span class="text-main">{{ m }}</span>
                     {% endfor %}
                 {% endwith %}
                 {{ form.submit(class="btn btn-simple btn-lg fs-6 border-white text-white border ms-auto")}}

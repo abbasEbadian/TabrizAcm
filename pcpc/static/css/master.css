@@ -93,6 +93,11 @@ td, th{
     border-color: #bbb;
     border-radius: 0
 }
+.new_design_inputs input.disabled,
+.new_design_inputs input:disabled{
+    background: white;
+    color: #999;
+}
 .new_design_inputs input:focus{
     outline: none !important;
     box-shadow: none !important;
@@ -225,10 +230,7 @@ td, th{
     padding-top: 128px;
 }
 #profile_page form{
-    background: #011a28dd;
-    border-radius: 16px;
     height: max-content;
-    box-shadow: 0 0 12px -2px #000;
 }
 
 #profile_page #avatar_div .help_text{
@@ -255,7 +257,7 @@ td, th{
 
 }
 #profile_page form label{
-    color: white;
+    color: var(--main);
 }
 
 #profile_page input#submit{
@@ -277,6 +279,9 @@ nav{
     -moz-transition: 0.2s all;
     -webkit-transition: 0.2s all;
     padding-top: 50px;
+}
+nav.nav.collapsed * {
+    color: white !important;
 }
 nav.white_theme #log_status *,
 nav.white_theme a{

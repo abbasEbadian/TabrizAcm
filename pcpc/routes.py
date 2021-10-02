@@ -29,7 +29,9 @@ def home():
 def page_not_found(error):
    return render_template('404.html', title = '404'), 404
 
-   
+@app.route("/rules")
+def rules():
+    return render_template("rules.html")
 @app.route('/admin/<menu_name>/edit/<param1>',  methods=["POST", "GET"])
 @app.route('/admin/<menu_name>', methods=["POST", "GET"])
 @app.route('/admin/')

@@ -48,11 +48,11 @@ class LoginForm(FlaskForm):
     submit = SubmitField('ورود به سایت')
 
 class ProfileForm(FlaskForm):
-    name = StringField('نام و نام خانوادگی', validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off"})
+    name = StringField('نام و نام خانوادگی', validators=[DataRequired(message=empty_message), ], render_kw={"autocomplete": "off", "placeholder":" "})
     email = EmailField('ایمیل',
-    validators=[], render_kw={"autocomplete": "off"})
-    identifier = StringField('شماره دانشجویی',render_kw={ "disabled":"disabled", "autocomplete": "off"})
-    phone = TelField("شماره همراه",render_kw={  "autocomplete": "off"})
+    validators=[], render_kw={"autocomplete": "off", "placeholder":" "})
+    identifier = StringField('شماره دانشجویی',render_kw={ "disabled":"disabled", "autocomplete": "off", "placeholder":" "})
+    phone = TelField("شماره همراه",render_kw={  "autocomplete": "off", "placeholder":" "})
     submit = SubmitField('بروزرسانی')
 
     def validate_email(self, email):
