@@ -167,6 +167,18 @@ $( e=> {
         $(e.currentTarget).toggleClass("active");
         $("aside.sidebar").toggleClass("active");
     })
+
+
+    $(".copytoclip").click(function(e){
+        const b = $(e.currentTarget)
+        const d = $(b).data("data")        
+        navigator.clipboard.writeText(d)
+        b.text("کپی شد!")
+        setTimeout(() => {
+            b.text("کپی!")
+        }, 2000);
+
+    })
 });
 // function changeBackground(img){
 //     let preview_div = $(img).siblings(".image_preview");    

@@ -1,96 +1,38 @@
 {% extends "base.html" %}
 {% block main %}
 <div id="contact_page">
-    <header class="position-relative d-grid align-items-bottom " style="background-image: url({{ url_for('static', filename='img/saat.jpg')}});">
-        <div class="overlay position-absolute top-0 bottom-0 start-0 end-0" style="background: #0002;z-index: 0;"></div>
+    <header class="position-relative place-items-center" style="background-image: url({{ url_for('static', filename='img/saat.jpg')}});">
+        <div class="overlay rounded mx-auto p-3 p-md-4 text-white mt-5" style="background: #012d52cc;width:80%;height: 400px;">
+                <h4>آدرس:</h4>
+                <p class="mt-3">تبریز- خیابان آزادی- ابتدای ضلع غربی روگذر ابوریحان- خیابان شاهد- نبش کوی بهارستان-
+                     دانشگاه پیام نور استان آذربایجان شرقی</p>
+         
+                <h4 class="mt-5 pt-md-4">ایمیل:</h4>
+                <h5>
+                    <a class="mt-4 text-white" href="mailto:pnu.farhangi@gmail.com"><u>pnu.farhangi@gmail.com</u></a>
+                </h5>
+
+
+                <h4  class="mt-5 pt-md-4">شماره تلفن:</h4>
+                <h5 class="d-inline">
+
+                    <a class="mt-3  text-white" href="tel:+984134769009"><u>04134769009</u></a>
+                </h5 >
+                 <b class="px-md-3 ">-</b>
+                <h5 class="d-inline">
+                    <a class="mt-3  text-white" href="tel:+984134768683"><u>04134768683</u></a>
+                </h5>
+
+
+
+         
+                    
+         
+        </div>
         
-        <form  action="" method="POST" style="z-index:1;" class="position-relative profile_container col-12 col-md-8 ms-auto  p-4  ">
-            <div class="overlay-2 position-absolute top-0 bottom-0 h-100 rounded" style="background: #09315577;z-index: 0;"></div>
-            {{ form.hidden_tag() }}
-            {% set s = form.name.process_data(current_user.is_authenticated and current_user.name or '') %}
-            {% set s = form.email.process_data(current_user.is_authenticated and current_user.email or '') %}
-            <div class="form-group mb-4 col-12 col-md-6">
-                <!-- {{ form.name.label(class="form-control-label text-white  pb-2") }} -->
-                {%if form.name.errors %}
-                    <div class="input-group iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-person-fill h-100 fs-5 text-white border-none bg-none" id="basic-addon1"></span>
-                        </div>
-                        {{ form.name(class="form-control   ") }}
-
-                    </div>
-                    <div class="invalid-feedback ">
-                        {% for error in form.name.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {%else%}
-                <div class="input-group iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-person-fill  h-100 fs-5 text-white border-none bg-none" id="basic-addon1"></span>
-                    </div>
-                    {{ form.name(class="form-control  ") }}
-                </div>
-                {%endif%}
-            </div>
-
-
-            <div class="form-group mb-4  col-12 col-md-6">
-                <!-- {{ form.email.label(class="form-control-label text-white pb-2") }} -->
-                {%if form.email.errors %}
-                    <div class="input-group iconed-input-group bg-none shadow-md is-invalid">
-                        <div class="input-group-prepend">
-                            <span class="icon input-group-text bi-envelope-fill h-100 fs-5 text-white border-none bg-none" id="basic-addon1"></span>
-                        </div>
-                        {{ form.email(class="form-control  ") }}
-
-                    </div>
-                    <div class="invalid-feedback ">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {%else%}
-                <div class="input-group iconed-input-group bg-none shadow-md">
-                    <div class="input-group-prepend">
-                        <span class="icon input-group-text bi-envelope-fill  h-100 fs-5 text-white border-none bg-none" id="basic-addon1"></span>
-                    </div>
-                    {{ form.email(class="form-control  ") }}
-                </div>
-                {%endif%}
-            </div>
-
-
-            <div class="form-group mb-4">
-                <!-- {{ form.text.label(class="form-control-label text-white  pb-2") }} -->
-                {%if form.text.errors %}
-                    <div class="input-group  bg-none shadow-md is-invalid">
-                        {{ form.text(class="form-control") }}
-                    </div>
-                    <div class="invalid-feedback ">
-                        {% for error in form.text.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {%else%}
-                <div class="input-group  bg-none shadow-md">
-                   
-                    {{ form.text(class="form-control") }}
-                </div>
-                {%endif%}
-            </div>
-
-
+      
            
-            <div class="form-group  d-flex justify-content-center align-items-center">
-                {% with messages = get_flashed_messages() %}
-                    {% for m in messages%}
-                        <span class="text-white">{{ m }}</span>
-                    {% endfor %}
-                {% endwith %}
-                {{ form.submit(class="btn btn-simple btn-lg fs-6 bg-white text-main border ms-auto")}}
-            </div>
-        </form>
+          
     </header>
 </div>
 {% endblock main %}
