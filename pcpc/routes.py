@@ -164,7 +164,6 @@ def profile():
     return render_template('profile.html', **data)
 
 @app.route('/contact-us', methods=["POST", "GET"])
-@login_required
 def contact_us():
     form = ContactForm() 
     if form.validate_on_submit():
