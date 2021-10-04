@@ -1,1 +1,1 @@
-"web: guincorn app:run" 
+"web: gunicorn app:run" 
