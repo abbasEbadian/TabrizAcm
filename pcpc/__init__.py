@@ -7,6 +7,7 @@ from flaskext.sass import sass
 import os
 from flask_assets import Environment, Bundle
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/db.sqlite"
 app.config["SECRET_KEY"] = "17ab226de066a0f995895791b9e726fbb14042df6583763d1df5084dfc3b53e8"
