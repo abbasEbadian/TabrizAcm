@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_uploads import configure_uploads, IMAGES, UploadSet
-from flaskext.sass import sass
 import os
 from flask_assets import Environment, Bundle
 
