@@ -32,6 +32,13 @@ def page_not_found(error):
 @app.route("/rules")
 def rules():
     return render_template("rules.html")
+
+
+@app.route("/registeration")
+def registeration2():
+    return render_template("registeration.html")
+
+
 @app.route('/admin/<menu_name>/edit/<param1>',  methods=["POST", "GET"])
 @app.route('/admin/<menu_name>', methods=["POST", "GET"])
 @app.route('/admin/')
@@ -140,8 +147,8 @@ def profile():
         current_user.email = form.email.data
         current_user.phone = form.phone.data
         flash('با موفقیت ذخیره شد', "info")
-        image = request.files['image']
-        if image.filename and image.filename != current_user.image.split("/")[-1]:
+        image = request.files and request.files['image'] or None
+        if image and image.filename and image.filename != current_user.image.split("/")[-1]:
             for ext in ['.png', '.jpg', '.jpeg']:
                 p = os.getcwd() + current_user.image + ext
                 if os.path.isfile(p):

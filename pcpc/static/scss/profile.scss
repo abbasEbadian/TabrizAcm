@@ -1,0 +1,61 @@
+
+/* ************** */
+/*  Profile Style */
+/* ************** */
+#profile_page {
+    padding-top: 128px;
+    #particles-js{
+        height: calc(100vh - 4px);
+    }
+    form {
+        height: max-content;
+        background-color: rgba(1,45,82,0.67);
+        border-radius: 12px;
+        
+        label {
+            color: var(--main);
+        }
+        input#submit {
+            width: 140px;
+        }
+        label {
+            font-size: 13px;
+        } 
+
+        .new_design_inputs{ 
+            input{
+                border-radius: 6px;;
+            }
+            input:focus + label, input:not(:placeholder-shown) + label{
+                bottom: 100%;
+                color: white;
+            }
+        }
+    }
+    #avatar_div {
+        position: relative;
+        overflow: hidden;
+        width: 108px;
+        height: 108px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        border-radius: 50%;
+
+        .help_text {
+            bottom: 0;
+            background: rgba(.1,.1,.1,.7);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 4px 0 8px 0;
+            cursor: pointer;
+          }
+      }
+
+  }
+  

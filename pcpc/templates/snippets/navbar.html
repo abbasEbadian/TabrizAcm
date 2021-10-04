@@ -1,4 +1,8 @@
 <nav class="nav justify-content-between align-items-center  px-md-5 px-sm-3 {{ navbar_text_color == 'white' and 'white_theme' or 'dark-theme' }}">
+    <span class="d-block d-md-none menu-toggler">
+        <span>&#9776;</span>
+        <span>&#9932;</span>
+    </span>
     {% include 'snippets/log_status.html' %}
     <a class="ms-5 " href="/">صفحه اصلی</a>
     <a class="ms-5 me-auto " href="/contact-us">ارتباط با ما</a>

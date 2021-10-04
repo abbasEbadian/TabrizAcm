@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-default.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {% assets "scss_all" %}
+        <link rel="stylesheet" href="/static/gen/all.css">
+    {% endassets %} 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/toastr.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/master.css')}}">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jqueryui.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquirtl.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bsicons.css')}}">
@@ -28,11 +33,12 @@
     {% if not hide_navbar %}
         {% include 'snippets/navbar.html' %}
     {% endif %}
+    {% include "snippets/mobile-sidebar.html" %}
     {% block navigator %} {% endblock %}
     {% block main %} {% endblock %}
 
     
-    
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js" integrity="sha512-72WD92hLs7T5FAXn3vkNZflWG6pglUDDpm87TeQmfSg8KnrymL2G30R7as4FmTwhgu9H7eSzDCX3mjitSecKnw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -45,6 +51,7 @@
     <script src="{{ url_for('static', filename='js/countdown.js')}}"></script>
     <script src="{{ url_for('static', filename='js/master.js')}}"></script>
     <script src="{{ url_for('static', filename='js/admin.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/particle.js')}}"></script>
 
 </body>
 </html>

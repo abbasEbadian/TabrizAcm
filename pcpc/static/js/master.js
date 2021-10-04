@@ -30,7 +30,7 @@ $( e=> {
     //Profile
     if(window.location.hash)
         $(window.location.hash).click();
-    
+    init_particle()
     $("#select_for_edit").change(e=>{
         var url = +$(e.target).val(); 
         console.log(url);
@@ -51,7 +51,7 @@ $( e=> {
                 return `rgba(9, 49, 85,${opacity})`;
             },
             "padding-top": function () {
-                return `${Math.max(max_pad - scrollTop, 5)}px`;
+                return "8px"//`${Math.max(max_pad - scrollTop, 5)}px`;
             },
             "transition": "0.22s all",
         })
@@ -163,6 +163,10 @@ $( e=> {
     // $('#summernote').summernote();
     if ($("#home_page").length > 0)
     init_timer();
+    $(".menu-toggler").click(e=>{
+        $(e.currentTarget).toggleClass("active");
+        $("aside.sidebar").toggleClass("active");
+    })
 });
 // function changeBackground(img){
 //     let preview_div = $(img).siblings(".image_preview");    
@@ -235,4 +239,65 @@ function init_timer() {
             </div>";
 
     }, 1000);
+
+
+   
+}
+function init_particle() {
+    if($("#particles-js").length == 0) return
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: "#4d4db9" },
+      shape: {
+        type: "circle",
+        stroke: { width: 0, color: "#000000" },
+        polygon: { nb_sides: 5 },
+      },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#4d4db9",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: { enable: false, rotateX: 600, rotateY: 1200 }
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: false, mode: "push" },
+        resize: true
+      },
+      modes: {
+        grab: { distance: 400, line_linked: { opacity: 1 } },
+        bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+        repulse: { distance: 200, duration: 0.4 },
+        push: { particles_nb: 4 },
+        remove: { particles_nb: 2 }
+      }
+    },
+    retina_detect: true
+  });
+
 }

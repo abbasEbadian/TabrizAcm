@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_uploads import configure_uploads, IMAGES, UploadSet
+from flaskext.sass import sass
 import os
+from flask_assets import Environment, Bundle
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/db.sqlite"
@@ -20,7 +22,12 @@ profile_pics = UploadSet('profilepics', IMAGES)
 question_pics = UploadSet('questionpics', IMAGES)
 announcement_pics = UploadSet('announcementpics', IMAGES)
 configure_uploads(app, (profile_pics, question_pics, announcement_pics))
-
+assets = Environment(app)
+assets.url = app.static_url_path
+assets.debug = True
+scss_files = ['scss/index.scss','scss/responsive.scss', 'scss/profile.scss']
+scss = Bundle( *scss_files , filters='pyscss', output='gen/all.css')
+assets.register('scss_all', scss)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)

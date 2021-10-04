@@ -1,4 +1,4 @@
-<div id="log_status" class="{{ navbar_text_color == 'white' and 'text-white'}} d-flex align-items-center">
+<div id="log_status" class="{{ navbar_text_color == 'white' and 'text-white' or ''}} d-none d-md-flex align-items-center">
     {% if current_user.is_authenticated %}
         <img class="me-2 rounded-circle" src="{{ 'static/'+current_user.image }}" alt="user_avatar" width="32px" height="32px">
         <a class='px-2' href="/profile">پروفایل</a>

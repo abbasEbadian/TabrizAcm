@@ -1,0 +1,19 @@
+{
+  "name": "pcpc",
+  "version": "1.0.0",
+  "description": "PNU Collegiate Programming Contest Website \r Which will be hosted by TabrizPNU.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abbasEbadian/TabrizAcm.git"
+  },
+  "author": "AE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abbasEbadian/TabrizAcm/issues"
+  },
+  "homepage": "https://github.com/abbasEbadian/TabrizAcm#readme"
+}

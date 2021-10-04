@@ -1,0 +1,107 @@
+// HEADER
+@media (max-width: 768px){
+    html body {
+        nav.nav{    
+            padding-top: 16px !important;
+            padding-right: 12px;
+            a, #log_status, i{
+                display: none;
+            }
+            span.menu-toggler{
+                font-size: 24px;
+                user-select: none;
+                cursor: pointer;
+                span:last-of-type{
+                    display: none;
+                }
+                span:first-of-type{
+                    display: block;
+                }
+                &.active{
+                    span:last-of-type{
+                        display: block;
+                    }
+                    span:first-of-type{
+                        display: none;
+                    }
+                }
+            }
+            #logo_container .logo_img{
+                height: 75px;
+            }
+        }
+        aside.sidebar{
+            width: 60vw;
+            right: -60vw;
+            top: 91px;
+            transition: 0.2s;
+            height: calc(100vh - 91px);
+            background-color: #012d52;
+            border-radius: 8px 0 0 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.47);
+            z-index: 12;
+            padding-right: 32px;
+            padding-top: 32px;
+            flex-direction: column;
+            a{
+                color: white;;
+                margin-bottom: 16px;
+            }
+        }
+        aside.sidebar.active{
+            right: 0;
+        }
+        #home_page {
+            header{
+                padding-top: 35%;
+
+                .aligned_content {
+                    h2{
+                        margin-top: 32px;
+                        font-size: 16px;
+                    }
+                    h6{
+                        margin : auto;
+                        margin-bottom: 32px;
+                    }
+                    a {
+                        box-shadow: 0 0 8px rgba(0,0,0,0.33);
+                    }
+                }
+            }
+            section {
+                padding-right:  1.5rem ;
+                padding-left:  1.5rem ;
+                margin-top: 32px;
+            }
+        }
+        .prev_archive{
+           div.overlayed{
+                height: 200px;
+                div.image{
+                    height: 200px;
+                }
+               &.babol  > div.image,
+               &.mashhad  > div.image,
+               &.hamedan  > div.image,
+               &.tehran  > div.image{
+                   background-position: 0;
+               }
+           } 
+        }
+    }
+    
+}
+@media (max-width: 540px){
+    .balloon{
+        display: none;
+    }
+}
+@media (min-width: 768px ){
+    #home-page{
+        .problemset_archive a{
+            width: 100%;
+            max-width: 350px;
+        }
+    }
+}

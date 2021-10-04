@@ -1,26 +1,27 @@
 {% extends "base.html" %}
 {% block main %}
 <div id="profile_page" class="d-flex align-items-center">
-    <div class="position-relative d-grid align-items-bottom  col-12 col-md-6 pt-5" >
+    <div id="particles-js"></div>
+    <div class="position-relative d-flex align-items-center  justify-content-center col-12 col-md-6 col-xl-5  mx-auto pt-5 px-2" >
         {% set p = form.email.process_data(current_user.email) %}
         {% set p = form.name.process_data(current_user.name) %}
         {% set p = form.identifier.process_data(current_user.identifier) %}
         {% set p = form.phone.process_data(current_user.phone) %}
-        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 col-md-8 p-2 ps-md-5 ms-md-5">
+        <form enctype="multipart/form-data" action="" method="POST" style="z-index:1;" class="profile_container col-12 p-2 ">
             {{ form.hidden_tag() }}
-            <div class="d-flex justify-content-between pb-5">
+            <div class="d-flex justify-content-center pb-5">
                 <div id="avatar_div" class="image_preview" style="background-image: url({{ 'static/'+current_user.image }});" >
                     <small class='help_text'>تغییر</small>
                 </div>
-                <input type="file" name="image" id="avatar_input" class="d-none image_input" accept=".png, .jpg, .jpeg">
+                <!-- <input type="file" name="image" id="avatar_input" class="d-none image_input" accept=".png, .jpg, .jpeg">
                 <div class="team_info d-flex flex-column justify-content-center align-items-left flex-grow-1 ms-4">
                     <h4 class="team_name border-bottom pb-2 mb-2 text-main text-end"> {{ current_user.team.name }} </h4>
                     <h5 class="team_city text-main text-start"> از {{ current_user.team.city }} </h5>
-                </div>
+                </div> -->
             </div>
-            <div class="form-group mb-4">
+            <div class="form-group mb-5">
                 {% if form.name.errors %}
-                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                    <div class="input-group  new_design_inputs bg-none  is-invalid">
                         {{ form.name(class="form-control form-control-lg pe-5") }}
                         {{ form.name.label(class="form-control-label pb-2 ") }}
                         <i class="bi-person-fill text-danger"></i>
@@ -32,7 +33,7 @@
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3  bg-none new_design_inputs">
+                <div class="input-group   bg-none new_design_inputs">
                     {{ form.name(class="form-control form-control-lg pe-5") }}
                     {{ form.name.label(class="form-control-label pb-2") }}
                     <i class="bi-person-fill"></i>
@@ -41,9 +42,9 @@
             </div>
 
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-5">
                 {% if form.email.errors %}
-                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                    <div class="input-group  new_design_inputs bg-none  is-invalid">
                         {{ form.email(class="form-control form-control-lg pe-5") }}
                         {{ form.email.label(class="form-control-label pb-2 ") }}
                         <i class="bi-envelope-fill text-danger"></i>
@@ -55,7 +56,7 @@
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3  bg-none new_design_inputs">
+                <div class="input-group   bg-none new_design_inputs">
                     {{ form.email(class="form-control form-control-lg pe-5") }}
                     {{ form.email.label(class="form-control-label pb-2") }}
                     <i class="bi-envelope-fill"></i>
@@ -64,9 +65,9 @@
             </div>
 
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-5">
                 {% if form.phone.errors %}
-                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                    <div class="input-group  new_design_inputs bg-none  is-invalid">
                         {{ form.phone(class="form-control form-control-lg pe-5") }}
                         {{ form.phone.label(class="form-control-label pb-2 ") }}
                         <i class="bi-phone-fill text-danger"></i>
@@ -78,7 +79,7 @@
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3  bg-none new_design_inputs">
+                <div class="input-group   bg-none new_design_inputs">
                     {{ form.phone(class="form-control form-control-lg pe-5") }}
                     {{ form.phone.label(class="form-control-label pb-2") }}
                     <i class="bi-phone-fill"></i>
@@ -87,9 +88,9 @@
             </div>
 
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-5">
                 {% if form.identifier.errors %}
-                    <div class="input-group mb-3 new_design_inputs bg-none  is-invalid">
+                    <div class="input-group  new_design_inputs bg-none  is-invalid">
                         {{ form.identifier(class="form-control form-control-lg pe-5") }}
                         {{ form.identifier.label(class="form-control-label pb-2 ") }}
                         <i class="bi-person-badge-fill text-danger"></i>
@@ -101,7 +102,7 @@
                         {% endfor %}
                     </div>
                 {%else%}
-                <div class="input-group mb-3  bg-none new_design_inputs">
+                <div class="input-group   bg-none new_design_inputs">
                     {{ form.identifier(class="form-control form-control-lg pe-5") }}
                     {{ form.identifier.label(class="form-control-label pb-2") }}
                     <i class="bi-person-badge-fill"></i>
@@ -111,14 +112,14 @@
             <div class="form-group  d-flex justify-content-center align-items-center">
                 {% with messages = get_flashed_messages() %}
                     {% for m in messages%}
-                        <span class="text-main">{{ m }}</span>
+                        <span class="text-white ps-3" >{{ m }}</span>
                     {% endfor %}
                 {% endwith %}
                 {{ form.submit(class="btn btn-simple btn-lg fs-6 border-white text-white border ms-auto")}}
             </div>
         </form>
     </div>
-    <div class="d-none d-md-block col-6 px-5 svg-container text-center">
+    <div class="d-none col-6 px-5 svg-container text-center">
         {% include 'iso/profile.svg' %}
     </div>   
 </div>
