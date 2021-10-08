@@ -2,18 +2,31 @@
 #profile_page {
   padding-top: 128px; }
   @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\000036}}
-  #profile_page form {
-    height: max-content; }
-    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\000037}}
-    #profile_page form label {
-      color: var("--main"); }
-      @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000310}}
-      #profile_page form input#submit {
-        width: 140px; }
-        @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000313}}
-        #profile_page form label {
-          font-size: 13px; }
-  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000318}}
+  #profile_page #particles-js {
+    height: calc(100vh - 4px); }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\000039}}
+    #profile_page form {
+      height: max-content;
+      background-color: rgba(1, 45, 82, 0.67);
+      border-radius: 12px; }
+      @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000313}}
+      #profile_page form label {
+        color: var("--main"); }
+        @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000316}}
+        #profile_page form input#submit {
+          width: 140px; }
+          @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000319}}
+          #profile_page form label {
+            font-size: 13px; }
+            @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000323}}
+            #profile_page form .new_design_inputs input {
+              border-radius: 6px; }
+              @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000326}}
+              #profile_page form .new_design_inputs input:focus + label,
+              #profile_page form .new_design_inputs input:not(:placeholder-shown) + label {
+                bottom: 100%;
+                color: white; }
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000334}}
   #profile_page #avatar_div {
     position: relative;
     overflow: hidden;
@@ -27,7 +40,7 @@
     justify-content: center;
     align-items: flex-end;
     border-radius: 50%; }
-    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000331}}
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\profile\.scss}line{font-family:\0000347}}
     #profile_page #avatar_div .help_text {
       bottom: 0;
       background: rgba(0, 0, 0, 0.7);
@@ -36,6 +49,109 @@
       text-align: center;
       padding: 4px 0 8px 0;
       cursor: pointer; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\000033}}
+@media (max-width: 768px) {
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\000033}}
+  html body nav.nav {
+    padding-top: 16px !important;
+    padding-right: 12px;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\000035}}
+    html body nav.nav a, html body nav.nav #log_status, html body nav.nav i {
+      display: none;   }
+      @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\000038}}
+      html body nav.nav span.menu-toggler {
+        font-size: 24px;
+        user-select: none;
+        cursor: pointer;   }
+        @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000311}}
+        html body nav.nav span.menu-toggler span:last-of-type {
+          display: none;   }
+          @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000314}}
+          html body nav.nav span.menu-toggler span:first-of-type {
+            display: block;   }
+            @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000317}}
+            html body nav.nav span.menu-toggler.active span:last-of-type {
+              display: block;   }
+              @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000320}}
+              html body nav.nav span.menu-toggler.active span:first-of-type {
+                display: none;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000327}}
+    html body nav.nav #logo_container .logo_img {
+      height: 75px;   }
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000332}}
+  html body aside.sidebar {
+    width: 60vw;
+    right: -60vw;
+    top: 91px;
+    transition: 0.2s;
+    height: calc(100vh - 91px);
+    background-color: #012d52;
+    border-radius: 8px 0 0 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.47);
+    z-index: 12;
+    padding-right: 32px;
+    padding-top: 32px;
+    flex-direction: column;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000344}}
+    html body aside.sidebar a {
+      color: white;
+      ;
+margin-bottom: 16px;   }
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000350}}
+  html body aside.sidebar.active {
+    right: 0;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000353}}
+    html body #home_page header {
+      padding-top: 35%;   }
+      @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000355}}
+      html body #home_page header .aligned_content h2 {
+        margin-top: 32px;
+        font-size: 16px;   }
+        @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000359}}
+        html body #home_page header .aligned_content h6 {
+          margin: auto;
+          margin-bottom: 32px;   }
+          @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000363}}
+          html body #home_page header .aligned_content a {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.33);   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000370}}
+    html body #home_page section {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+      margin-top: 32px;   }
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000377}}
+  html body .prev_archive div.overlayed {
+    height: 200px;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000378}}
+    html body .prev_archive div.overlayed div.image {
+      height: 200px;   }
+      @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000384}}
+      html body .prev_archive div.overlayed.babol > div.image,
+      html body .prev_archive div.overlayed.mashhad > div.image,
+      html body .prev_archive div.overlayed.hamedan > div.image,
+      html body .prev_archive div.overlayed.tehran > div.image {
+        background-position: 0;   }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000396}}
+@media (max-width: 540px) {
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\0000396}}
+  .balloon {
+    display: none;   }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\00003101}}
+@media (min-width: 768px ) {
+  @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\\responsive\.scss}line{font-family:\00003101}}
+  #home-page .problemset_archive a {
+    width: 100%;
+    max-width: 350px;   }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\/index\.scss}line{font-family:\000034}}
+.text-justify {
+  text-align: justify; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/H\:\\Projects\\PCPC\\pcpc\\static\\scss\/responsive\.scss}line{font-family:\000032}}
 @media (max-width: 768px) {

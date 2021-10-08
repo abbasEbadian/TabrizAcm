@@ -18,6 +18,7 @@ app.config["UPLOADED_PROFILEPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"] + '
 app.config["UPLOADED_QUESTIONPICS_DEST"] = app.config["UPLOADS_DEFAULT_DEST"]+'/uploads/question_pics'
 app.config["UPLOADED_ANNOUNCEMENTPICS_DEST"] = '/uploads/announcement_pics/'
 app.config["UPLOADS_DEFAULT_URL"] = 'uploads/images'
+app.config['UPLOAD_FOLDER'] = 'static/files/'
 profile_pics = UploadSet('profilepics', IMAGES)
 question_pics = UploadSet('questionpics', IMAGES)
 announcement_pics = UploadSet('announcementpics', IMAGES)

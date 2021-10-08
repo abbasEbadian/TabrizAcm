@@ -1,6 +1,6 @@
 from wtforms.form import FormMeta
 from pcpc import app
-from flask import render_template, request, flash, redirect, url_for, jsonify, abort
+from flask import render_template, request, flash, redirect, url_for, jsonify, abort,send_from_directory
 import json, os
 from pcpc.models import User, Team, ContactUs, Announcement
 from pcpc.forms import RegisterForm, LoginForm, ProfileForm, ContactForm, AnnounceForm
@@ -179,9 +179,9 @@ def contact_us():
     data = {
         "form": form,
         "title": "PCPC - Contect us",
-        "navbar_theme": "white_theme",
+        # "navbar_theme": "white_theme",
         "navbar_logo_color": "colored",
-        "navbar_text_color": "white",
+        # "navbar_text_color": "white",
     }
     return render_template('contact-us.html', **data)
 
@@ -259,3 +259,11 @@ def update_team_city():
         db.session.commit() 
     db.session.commit() 
     return jsonify({"result":"success"})
+
+@app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
+def download(filename):
+    # Appending app path to upload folder path within app root folder
+    uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+    # Returning file from appended path
+    print(uploads)
+    return send_from_directory(uploads, filename, as_attachment=True)
